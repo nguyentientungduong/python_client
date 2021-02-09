@@ -8,7 +8,7 @@ RUN set -eux \
 
 # Install dependency other
 RUN set -eux \
-    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre2-devel libpcre2 python3
+    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre3-devel libpcre3 python3
 
 # Install griddb server
 RUN set -eux \
