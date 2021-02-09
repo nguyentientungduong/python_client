@@ -2,6 +2,10 @@ FROM centos:centos7.8.2003
 
 ENV GRIDDB_SERVER_VERSION=4.5.2
 
+# Update system for install python2.7 and pcre
+RUN set -eux \
+    && yum update -y
+
 # Install dependency other
 RUN set -eux \
     && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre2-devel libpcre2 python3
