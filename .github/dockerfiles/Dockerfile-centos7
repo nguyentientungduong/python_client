@@ -4,7 +4,7 @@ ENV GRIDDB_SERVER_VERSION=4.5.2
 
 # Install dependency other
 RUN set -eux \
-    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool
+    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre2-devel.x86_64 python3
 
 # Install griddb server
 RUN set -eux \
@@ -12,12 +12,25 @@ RUN set -eux \
     && wget -q https://github.com/griddb/griddb/releases/download/v${GRIDDB_SERVER_VERSION}/griddb-${GRIDDB_SERVER_VERSION}-linux.x86_64.rpm \
 # Install package griddb server
     && rpm -ivh griddb-${GRIDDB_SERVER_VERSION}-linux.x86_64.rpm \
-# Remove package
+# Clean package
     && rm griddb-${GRIDDB_SERVER_VERSION}-linux.x86_64.rpm \
 # Add repos for griddb c client
     && cd /etc/yum.repos.d/ \
     && wget https://download.opensuse.org/repositories/home:knonomura/CentOS_7/home:knonomura.repo \
 # Install package griddb c client
-    && yum -y install griddb-c-client \
-# Remove package
+    && yum -y install griddb-c-client
+
+# Install SWIG
+RUN set -eux \
+   && wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz \
+   && tar xvfz swig-3.0.12.tar.gz \
+   && cd swig-3.0.12 \
+   && ./configure \
+   && make \
+   && make install \
+   && cd .. \
+   && rm swig-3.0.12.tar.gz
+
+# Clean environment
+RUN set -eux \
     && yum clean all
