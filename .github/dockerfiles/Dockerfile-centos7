@@ -1,12 +1,10 @@
 FROM centos:centos7.8.2003
 
-ENV GRIDDB_C_CLIENT_VERSION=4.5.2
 ENV GRIDDB_SERVER_VERSION=4.5.2
 
 # Install dependency other
 RUN set -eux \
-    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool \
-    && yum clean all
+    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool
 
 # Install griddb server
 RUN set -eux \
@@ -20,6 +18,6 @@ RUN set -eux \
     && cd /etc/yum.repos.d/ \
     && wget https://download.opensuse.org/repositories/home:knonomura/CentOS_7/home:knonomura.repo \
 # Install package griddb c client
-    && yum install griddb-c-client \
+    && yum -y install griddb-c-client \
 # Remove package
     && yum clean all
