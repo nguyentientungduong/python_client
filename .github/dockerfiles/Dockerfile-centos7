@@ -11,7 +11,7 @@ RUN set -eux \
 # Install griddb server
 RUN set -eux \
 # Download package griddb server
-    && wget -q https://github.com/griddb/griddb/releases/download/v${GRIDDB_VERSION}/griddb-${GRIDDB_VERSION}-linux.x86_64.rpm \
+    && wget -q https://github.com/griddb/griddb/releases/download/v${GRIDDB_SERVER_VERSION}/griddb-${GRIDDB_SERVER_VERSION}-linux.x86_64.rpm \
 # Install package griddb server
     && rpm -ivh griddb-${GRIDDB_SERVER_VERSION}-linux.x86_64.rpm \
 # Remove package
