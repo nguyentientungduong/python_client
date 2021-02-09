@@ -4,7 +4,7 @@ ENV GRIDDB_SERVER_VERSION=4.5.2
 
 # Install dependency other
 RUN set -eux \
-    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre2-devel.x86_64 python3
+    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre2-devel libpcre2 python3
 
 # Install griddb server
 RUN set -eux \
