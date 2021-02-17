@@ -22,5 +22,6 @@ build_python_client() {
 # Create whl package
 build_package() {
     cd python_client/
+    source $HOME/.bashrc
     python setup.py bdist_wheel
 }
