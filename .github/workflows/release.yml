@@ -20,7 +20,6 @@ jobs:
       matrix:
         include:
           - os: Centos
-            file_type: rpm
             docker_file: .github/dockerfiles/Dockerfile-centos7
             docker_image: centos
             container_name: centos_container
@@ -34,4 +33,7 @@ jobs:
       - name: Build Griddb C Client
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && build_python_client"
+      - name: Create whl file for ${{ matrix.os }}
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && build_package "
 

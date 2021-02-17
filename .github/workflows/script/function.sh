@@ -15,9 +15,12 @@ check_file_exist() {
 
 # Build Python Client
 build_python_client() {
-    # Update include file to python.h
-    updatedb
-    locate Python.h
     cd python_client/
     make
+}
+
+# Create whl package
+build_package() {
+    cd python_client/
+    python setup.py bdist_wheel
 }

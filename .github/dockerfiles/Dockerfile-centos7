@@ -49,12 +49,12 @@ RUN set -eux \
    && eval "$(pyenv init -)" \
    && pyenv install 3.6.4 \
    && pyenv global 3.6.4 \
-# Python install Numpy and Pandas
-   && python -m pip install numpy pandas
+   # Python install Numpy and Pandas
+   && python -m pip install numpy pandas \
+   # Update package for creating WHL package
+   && python -m pip install --user --upgrade setuptools wheel
 
 # Prepare softlink to install GridDB Python Client
-RUN updatedb
-RUN locate Python.h
 RUN ln -sf /root/.pyenv/versions/3.6.4/include/python3.6m/ /usr/include/python3.6
 
 # Clean environment
