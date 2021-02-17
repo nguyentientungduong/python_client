@@ -35,6 +35,10 @@ RUN set -eux \
    && cd .. \
    && rm swig-3.0.12.tar.gz
 
+# Python install Numpy and Pandas
+RUN set -eux \
+   && python -m pip install numpy pandas
+
 # Clean environment
 RUN set -eux \
     && yum clean all
