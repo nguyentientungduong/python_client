@@ -55,7 +55,7 @@ RUN set -eux \
 # Prepare softlink to install GridDB Python Client
 RUN updatedb
 RUN locate Python.h
-RUN ln -sf /usr/include/python3.6m/ /usr/include/python3.6
+RUN ln -sf /root/.pyenv/versions/3.6.4/include/python3.6m/ /usr/include/python3.6
 
 # Clean environment
 RUN set -eux \
