@@ -40,7 +40,7 @@ RUN set -eux \
    && python3 -m pip install numpy pandas
 
 # Prepare softlink to install GridDB Python Client
-RUN ln -sf /usr/include/python3.6m/Python.h /usr/include/python3.6
+RUN ln -sf /usr/include/python3.6m/Python.h /usr/include/python3.6/
 
 # Clean environment
 RUN set -eux \
