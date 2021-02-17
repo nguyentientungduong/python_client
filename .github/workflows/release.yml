@@ -30,8 +30,8 @@ jobs:
       - name: Build Docker Image
         run: docker build -t ${{ matrix.docker_image }} -f ${{ matrix.docker_file }} .
       - name: Run Docker Image
-        run: docker run --name ${{ matrix.container_name }} -it -d -v `pwd`:/c_client ${{ matrix.docker_image }}
+        run: docker run --name ${{ matrix.container_name }} -it -d -v `pwd`:/python_client ${{ matrix.docker_image }}
       - name: Build Griddb C Client
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". c_client/.github/workflows/script/function.sh \
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && build_python_client"
 
