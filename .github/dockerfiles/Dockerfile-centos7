@@ -60,4 +60,6 @@ RUN ln -sf /root/.pyenv/versions/3.6.4/include/python3.6m/ /usr/include/python3.
 # Clean environment
 RUN set -eux \
     && yum clean all
+
+CMD export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"
     
