@@ -39,7 +39,7 @@ RUN set -eux \
 # Install pyenv
 RUN set -eux \
    && yum -y install epel-release \
-   && yum install git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel \
+   && yum install -y git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel \
    && git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
 
 # Use pyenv to install python
