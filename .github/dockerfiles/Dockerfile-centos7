@@ -8,7 +8,7 @@ RUN set -eux \
 
 # Install dependency other
 RUN set -eux \
-    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre-devel python3 python3-devel mlocate
+    && yum install -y wget python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre-devel mlocate
 
 # Install griddb server
 RUN set -eux \
@@ -35,11 +35,28 @@ RUN set -eux \
    && cd .. \
    && rm swig-3.0.12.tar.gz
 
+
+# Install pyenv
+RUN set -eux \
+   && yum -y install epel-release \
+   && yum install git gcc zlib-devel bzip2-devel readline-devel sqlite-devel openssl-devel \
+   && git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+
+# Use pyenv to install python
+RUN set -eux \
+   && export PYENV_ROOT="$HOME/.pyenv" \
+   && export PATH="$PYENV_ROOT/bin:$PATH" \
+   && eval "$(pyenv init -)"
+   && pyenv install 3.6.4
+   && pyenv global 3.6.4
+
 # Python install Numpy and Pandas
 RUN set -eux \
-   && python3 -m pip install numpy pandas
+   && python -m pip install numpy pandas
 
 # Prepare softlink to install GridDB Python Client
+RUN updatedb
+RUN locate Python.h
 RUN ln -sf /usr/include/python3.6m/ /usr/include/python3.6
 
 # Clean environment
