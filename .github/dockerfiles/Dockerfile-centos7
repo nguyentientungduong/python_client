@@ -49,9 +49,7 @@ RUN set -eux \
    && eval "$(pyenv init -)" \
    && pyenv install 3.6.4 \
    && pyenv global 3.6.4
-
 # Python install Numpy and Pandas
-RUN set -eux \
    && python -m pip install numpy pandas
 
 # Prepare softlink to install GridDB Python Client
