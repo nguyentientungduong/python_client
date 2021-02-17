@@ -26,9 +26,6 @@ RUN set -eux \
 
 # Install SWIG
 RUN set -eux \
-
-    && updatedb \
-    && locate libpcre \
    && wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz \
    && tar xvfz swig-3.0.12.tar.gz \
    && cd swig-3.0.12 \
