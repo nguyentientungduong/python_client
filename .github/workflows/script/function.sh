@@ -16,6 +16,7 @@ check_file_exist() {
 # Build Python Client
 build_python_client() {
     # Update include file to python.h
+    updatedb
     locate Python.h
     cd python_client/
     make
