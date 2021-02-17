@@ -13,15 +13,9 @@ check_file_exist() {
     fi
 }
 
-# Build Python Client
-build_python_client() {
-    cd python_client/
-    make
-}
-
 # Create whl package
 build_package() {
     cd python_client/
-    source $HOME/.bashrc
+    source $HOME/.bashrc # for using pyenv
     python setup.py bdist_wheel
 }
