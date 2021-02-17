@@ -54,12 +54,17 @@ RUN set -eux \
    # Update package for creating WHL package
    && python -m pip install --user --upgrade setuptools wheel
 
+# pyenv configs
+RUN set -eux \
+   && echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /root/.bashrc
+   && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bashrc
+   && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc
+   && echo '  eval "$(pyenv init -)"' >> /root/.bashrc
+   && echo 'fi' >> /root/.bashrc
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.4/include/python3.6m/ /usr/include/python3.6
 
 # Clean environment
 RUN set -eux \
     && yum clean all
-
-CMD export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"
     
