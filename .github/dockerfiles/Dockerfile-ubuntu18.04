@@ -2,12 +2,9 @@ FROM ubuntu:18.04
 
 ENV GRIDDB_SERVER_VERSION=4.5.2
 
-# Update system for install python2.7 and pcre
-#RUN set -eux \
-#    && apt-get update -y
-
-# Install other dependency
+# Install dependency
 RUN set -eux \
+    && apt-get update -y \
     && apt-get install -y gcc-4.8 g++-4.8
 
 # Create softlink gcc g++
