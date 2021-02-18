@@ -67,7 +67,7 @@ RUN set -eux \
    && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc \
    && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
    && echo 'fi' >> /root/.bashrc \
-   && source /root/.bashrc
+   && . /root/.bashrc
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
 
