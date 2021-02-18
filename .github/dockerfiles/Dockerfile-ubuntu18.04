@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install dependency
 RUN set -eux \
     && apt-get update -y \
-    && apt-get install -y gcc-4.8 g++-4.8 wget gnupg curl libpcre3-dev make git
+    && apt-get install -y gcc-4.8 g++-4.8 wget gnupg curl libpcre3-dev make git shopt
 
 # Create softlink gcc g++
 RUn set -eux \
@@ -67,7 +67,7 @@ RUN set -eux \
    && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc \
    && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
    && echo 'fi' >> /root/.bashrc \
-   && . /root/.bashrc
+   && source /root/.bashrc
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
 
