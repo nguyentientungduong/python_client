@@ -16,6 +16,5 @@ check_file_exist() {
 # Create whl package
 build_package() {
     cd python_client/
-    source $HOME/.bashrc # for using pyenv
     python setup.py bdist_wheel
 }

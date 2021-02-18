@@ -56,11 +56,11 @@ RUN set -eux \
 
 # pyenv configs
 RUN set -eux \
-   && echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /root/.bashrc \
-   && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bashrc \
-   && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc \
-   && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
-   && echo 'fi' >> /root/.bashrc
+   && echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /root/.bash_profile \
+   && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bash_profile \
+   && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bash_profile \
+   && echo '  eval "$(pyenv init -)"' >> /root/.bash_profile \
+   && echo 'fi' >> /root/.bash_profile
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
 
