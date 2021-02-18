@@ -5,7 +5,7 @@ ENV GRIDDB_SERVER_VERSION=4.5.2
 # Install dependency
 RUN set -eux \
     && apt-get update -y \
-    && apt-get install -y gcc-4.8 g++-4.8 wget gnupg curl libpcre3-dev
+    && apt-get install -y gcc-4.8 g++-4.8 wget gnupg curl libpcre3-dev make
 
 # Create softlink gcc g++
 RUn set -eux \
