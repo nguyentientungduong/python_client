@@ -2,6 +2,9 @@ FROM ubuntu:18.04
 
 ENV GRIDDB_SERVER_VERSION=4.5.2
 
+# Enviroment
+ENV DEBIAN_FRONTEND noninteractive
+
 # Install dependency
 RUN set -eux \
     && apt-get update -y \
