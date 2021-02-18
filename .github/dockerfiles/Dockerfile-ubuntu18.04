@@ -4,11 +4,17 @@ ENV GRIDDB_SERVER_VERSION=4.5.2
 
 # Update system for install python2.7 and pcre
 #RUN set -eux \
-#    && yum update -y
+#    && apt-get update -y
 
-# Install dependency other
+# Install other dependency
 RUN set -eux \
-    && apt-get install -y python27 automake make gcc gcc-c++ rpm-build rsync libtool pcre-devel mlocate
+    && apt-get install -y gcc-4.8 g++-4.8
+
+# Create softlink gcc g++
+RUn set -eux \
+    && ln -sf /usr/bin/g++-4.8 /usr/bin/g++ \
+    && ln -sf /usr/bin/gcc-4.8 /usr/bin/gcc \
+    && ln -sf /usr/bin/python2.7 /usr/bin/python2
 
 # Install griddb server
 RUN set -eux \
