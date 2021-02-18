@@ -18,9 +18,9 @@ RUN set -eux \
 # Download package griddb server
     && wget -q https://github.com/griddb/griddb/releases/download/v${GRIDDB_SERVER_VERSION}/griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
 # Install package griddb server
-    && dpkg -i griddb-${GRIDDB_SERVER_VERSION}_amd64.deb \
+    && dpkg -i griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
 # Clean package
-    && rm griddb-${GRIDDB_SERVER_VERSION}_amd64.deb \
+    && rm griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
 # Add repos for griddb c client
     && echo 'deb http://download.opensuse.org/repositories/home:/knonomura/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/home:knonomura.list \
     && curl -fsSL https://download.opensuse.org/repositories/home:knonomura/xUbuntu_18.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_knonomura.gpg > /dev/null \
