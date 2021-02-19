@@ -12,8 +12,8 @@ RUN set -eux \
 
 # Create softlink gcc g++
 RUn set -eux \
-    && ln -sf /usr/bin/g++-4.8 /usr/bin/g++ \
-    && ln -sf /usr/bin/gcc-4.8 /usr/bin/gcc \
+#    && ln -sf /usr/bin/g++-4.8 /usr/bin/g++ \
+#    && ln -sf /usr/bin/gcc-4.8 /usr/bin/gcc \
     && ln -sf /usr/bin/python2.7 /usr/bin/python2
 
 # Install griddb server
@@ -93,8 +93,6 @@ RUN set -eux \
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6 \
    && ln -sf /usr/bin/python3 /usr/bin/python \
-   && ln -sf /usr/bin/gcc-4.8 /usr/bin/gcc \
-   && ln -sf /usr/bin/g++-4.8 /usr/bin/g++
 
 # Clean environment
 RUN set -eux \
