@@ -19,10 +19,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: Centos
-            docker_file: .github/dockerfiles/Dockerfile-centos7
-            docker_image: centos
-            container_name: centos_container
           - os: Ubuntu
             docker_file: .github/dockerfiles/Dockerfile-ubuntu18.04
             docker_image: ubuntu
