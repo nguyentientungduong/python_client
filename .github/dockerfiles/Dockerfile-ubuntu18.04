@@ -54,7 +54,8 @@ RUN set -eux \
    && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bashrc \
    && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc \
    && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
-   && echo 'fi' >> /root/.bashrc
+   && echo 'fi' >> /root/.bashrc \
+   && /bin/bash -c "source /root/.bashrc"
 
 # Use pyenv to install python
 RUN set -eux \
@@ -62,6 +63,7 @@ RUN set -eux \
 #   && export PATH="$PYENV_ROOT/bin:$PATH" \
 #   && eval "$(pyenv init -)" \
    && /bin/bash -c "source /root/.bashrc" \
+   $$ echo $PATH \
    && pyenv install 3.6.9 \
    && pyenv global 3.6.9 \
    # Python install Numpy and Pandas
