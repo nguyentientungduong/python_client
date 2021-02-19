@@ -91,7 +91,8 @@ RUN set -eux \
    && locate arrayobject.h
 
 # Prepare softlink to install GridDB Python Client
-RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
+RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6 \
+   && ln -sf /usr/bin/python3 /usr/bin/python
 
 # Clean environment
 RUN set -eux \
