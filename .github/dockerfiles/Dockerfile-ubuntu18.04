@@ -56,8 +56,6 @@ RUN set -eux \
    && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
    && echo 'fi' >> /root/.bashrc
 
-RUN /bin/bash -c "source /root/.bashrc"
-
 # Use pyenv to install python
 RUN set -eux \
 #   && export PYENV_ROOT="$HOME/.pyenv" \
@@ -65,6 +63,7 @@ RUN set -eux \
 #   && eval "$(pyenv init -)" \
 #   && pyenv install 3.6.9 \
 #   && pyenv global 3.6.9 \
+   && /bin/bash -c "source /root/.bashrc"
    # Python install Numpy and Pandas
    && python -m pip install numpy pandas \
    # Update package for creating WHL package
