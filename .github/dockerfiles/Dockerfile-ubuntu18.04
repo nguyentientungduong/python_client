@@ -96,7 +96,7 @@ RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.
    && ln -sf /usr/local/lib/python3.6/dist-packages/numpy/core/include/ /root/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/include
 
 # Correct path to numpy header file
-RUN mkdir -p /root/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/
+RUN mkdir -p /root/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/ \
    && ln -sf /usr/local/lib/python3.6/dist-packages/numpy/core/include/ /root/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/include
 
 # Clean environment
