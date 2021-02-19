@@ -64,6 +64,7 @@ RUN set -eux \
 #   && pyenv install 3.6.9 \
 #   && pyenv global 3.6.9 \
    && /bin/bash -c "source /root/.bashrc" \
+   && /bin/sh -c "source /root/.bashrc" \
    # Python install Numpy and Pandas
    && python -m pip install numpy pandas \
    # Update package for creating WHL package
