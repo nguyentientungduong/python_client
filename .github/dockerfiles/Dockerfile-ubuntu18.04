@@ -54,8 +54,9 @@ RUN set -eux \
    && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bashrc \
    && echo 'if command -v pyenv 1>/dev/null 2>&1; then' >> /root/.bashrc \
    && echo '  eval "$(pyenv init -)"' >> /root/.bashrc \
-   && echo 'fi' >> /root/.bashrc \
-   && source /root/.bashrc
+   && echo 'fi' >> /root/.bashrc
+
+RUN /bin/bash -c "source /root/.bashrc"
 
 # Use pyenv to install python
 RUN set -eux \
