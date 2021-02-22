@@ -63,7 +63,12 @@ run_sample() {
     local username=$4
     local password=$5
 
-    export PYTHON_PATH=`pwd`/python_client
+    export PYTHON_PATH=`pwd`
+    pwd
+    ls
+    echo "2"
+    ls python_client/
+    echo "2"
     python sample/sample1.py $notification_host $notification_port \
         $cluster_name $username $password
 }
