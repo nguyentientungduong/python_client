@@ -16,7 +16,8 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
-    python python_client/setup.py bdist_wheel -p $WHLSUFFIX
+    cd python_client/
+    python setup.py bdist_wheel -p $WHLSUFFIX
 }
 
 # Check information rpm and deb package
