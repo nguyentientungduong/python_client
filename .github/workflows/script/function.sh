@@ -88,10 +88,15 @@ uninstall_package() {
 
 # Prepare env for MacOS
 install_packages_macos() {
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-    python --version
-    #brew install python
+    brew install pyenv
+    pyenv install 3.6.9
+    pyenv global 3.6.9
+    python -m pip install --user --upgrade setuptools wheel
 }
+
+build_package_macos() {
+    python setup.py bdist_wheel
+}
+
 
 

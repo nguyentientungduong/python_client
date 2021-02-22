@@ -73,4 +73,4 @@ jobs:
              && install_packages_macos
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh \
-             && build_package
+             && build_package_macos
