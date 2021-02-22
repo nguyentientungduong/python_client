@@ -35,7 +35,7 @@ jobs:
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && build_package"
       - name: Check package information
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec "wheel2json ${{ matrix.package_path }}"
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec wheel2json ${{ matrix.package_path }}
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
