@@ -22,12 +22,17 @@ build_package() {
 
 # Check information rpm and deb package
 check_package() {
-    pwd
-    ls
     cd python_client/ 
     version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
     package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
     wheel2json "$package_path"
+}
+
+# Install rpm and deb package
+install_griddb() {
+    local package_path=$1
+    check_file_exist "$package_path"
+    python -m pip install "$package_path"
 }
 

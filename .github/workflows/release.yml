@@ -37,6 +37,8 @@ jobs:
       - name: Check package information
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && check_package"
+      - name: Install package
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh && install_client ${{ matrix.package_path }}"
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
