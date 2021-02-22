@@ -90,7 +90,8 @@ uninstall_package() {
 install_packages_macos() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-    brew install python
+    python --version
+    #brew install python
 }
 
 
