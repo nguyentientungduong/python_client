@@ -39,6 +39,21 @@ jobs:
              && check_package"
       - name: Install package
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh && install_client ${{ matrix.package_path }}"
+ - name: Config GridDB server
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && config_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD} ${GRIDDB_SERVER_NAME}"
+      - name: Start server
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && start_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD} ${GRIDDB_SERVER_NAME}"
+      - name: Run sample
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
+      - name: Stop server
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && stop_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
+      - name: Uninstall package
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && uninstall_package ${GRIDDB_PACKAGE_NAME} ${{ matrix.os }}"
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:

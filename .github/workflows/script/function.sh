@@ -36,3 +36,50 @@ install_client() {
     python -m pip install "$package_path"
 }
 
+# Config password and clustername for griddb server
+config_griddb() {
+    local username=$1
+    local password=$2
+    local cluster_name=$3
+    su -l gsadm -c "gs_passwd $username -p $password"
+    su -l gsadm -c "sed -i 's/\"clusterName\":\"\"/\"clusterName\":\"$cluster_name\"/g' /var/lib/gridstore/conf/gs_cluster.json"
+}
+
+# Start and run griddb server
+start_griddb() {
+    local username=$1
+    local password=$2
+    local cluster_name=$3
+    su -l gsadm -c "gs_startnode -w -u $username/$password"
+    su -l gsadm -c "gs_joincluster -c $cluster_name -u $username/$password -w"
+}
+
+# Run sample of Java Client
+# You can refer to https://github.com/griddb/python_client
+run_sample() {
+    # Run sample
+    local notification_host=$1
+    local notification_port=$2
+    local cluster_name=$3
+    local username=$4
+    local password=$5
+
+    cd python_client/
+    export PYTHON_PATH=`pwd`
+    python sample/sample1.py $notification_host $notification_port \
+        $cluster_name $username $password
+}
+
+# Stop GridDB server
+stop_griddb() {
+    local username=$1
+    local password=$2
+    su -l gsadm -c "gs_stopcluster -u  $username/$password -w"
+    su -l gsadm -c "gs_stopnode -u  $username/$password -w"
+}
+
+# Uninstall GridDB package
+uninstall_package() {
+    python -m pip uninstall griddb_python
+}
+
