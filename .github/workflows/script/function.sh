@@ -80,6 +80,6 @@ stop_griddb() {
 
 # Uninstall GridDB package
 uninstall_package() {
-    python -m pip uninstall griddb_python
+    python -m pip uninstall -y griddb_python
 }
 
