@@ -16,7 +16,6 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
-    cd python_client/
     python setup.py bdist_wheel -p $WHLSUFFIX
 }
 
