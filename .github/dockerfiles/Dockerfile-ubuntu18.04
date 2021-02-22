@@ -42,6 +42,8 @@ RUN set -eux \
 RUN set -eux \
    # Python install Numpy and Pandas
    && python3 -m pip install numpy pandas \
+   # Install wheel-inspect to check whl information
+   && python3 -m pip install wheel-inspect \
    # Update package for creating WHL package
    && python3 -m pip install --user --upgrade setuptools wheel \
    && updatedb \

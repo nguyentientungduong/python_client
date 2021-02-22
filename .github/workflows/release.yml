@@ -15,7 +15,7 @@ env:
 jobs:
   release_package:
     name: Create and release ${{ matrix.file_type }} file for ${{ matrix.os }}
-    runs-on: macos-10.15
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -34,6 +34,10 @@ jobs:
       - name: Create whl file for ${{ matrix.os }}
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && build_package"
+      - name: Check package information
+      - name: Create whl file for ${{ matrix.os }}
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
+             && wheel2json ${{ matrix.package_path }}"
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
