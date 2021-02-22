@@ -24,6 +24,7 @@ build_package() {
 check_package() {
     pwd
     ls
+    cd python_client/ 
     version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
     package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
