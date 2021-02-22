@@ -63,7 +63,7 @@ run_sample() {
     local username=$4
     local password=$5
 
-    export PYTHON_PATH=`pwd`
+    #export PYTHON_PATH=`pwd`
     pwd
     ls
     echo "2"
