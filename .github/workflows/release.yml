@@ -23,7 +23,7 @@ jobs:
             docker_file: .github/dockerfiles/Dockerfile-ubuntu18.04
             docker_image: ubuntu
             container_name: ubuntu_container
-            package_path: python_client/dist/griddb_python-*.whl
+            package_path: dist/griddb_python-*.whl
 
     steps:
       - uses: actions/checkout@v1
