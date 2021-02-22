@@ -68,6 +68,9 @@ jobs:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v1
+      - name: Prepare environment for MacOS 10.15
+        run: . .github/workflows/script/function.sh \
+             && install_packages_macos
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh \
              && build_package

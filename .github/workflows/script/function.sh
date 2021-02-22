@@ -63,7 +63,6 @@ run_sample() {
     local username=$4
     local password=$5
 
-    cd python_client/
     export PYTHON_PATH=`pwd`
     python sample/sample1.py $notification_host $notification_port \
         $cluster_name $username $password
@@ -81,4 +80,12 @@ stop_griddb() {
 uninstall_package() {
     python -m pip uninstall -y griddb_python
 }
+
+# Prepare env for MacOS
+install_packages_macos() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    brew install python
+}
+
 
