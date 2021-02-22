@@ -19,3 +19,9 @@ build_package() {
     python setup.py bdist_wheel -p manylinux1_x86_64
 }
 
+# Check information rpm and deb package
+check_package() {
+    local package_path=$1
+    wheel2json $package_path
+}
+
