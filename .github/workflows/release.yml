@@ -23,7 +23,7 @@ jobs:
             docker_file: .github/dockerfiles/Dockerfile-ubuntu18.04
             docker_image: ubuntu
             container_name: ubuntu_container
-            package_path: "dist/griddb_python-*.whl"
+            package_path: dist/griddb_python-*.whl
 
     steps:
       - uses: actions/checkout@v1
@@ -36,7 +36,7 @@ jobs:
              && build_package"
       - name: Check package information
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
-             && check_package ${{ matrix.package_path }}"
+             && check_package \"${{ matrix.package_path }}\""
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
