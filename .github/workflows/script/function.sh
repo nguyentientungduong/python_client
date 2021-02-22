@@ -16,22 +16,19 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
-    cd python_client/
-    python setup.py bdist_wheel -p $WHLSUFFIX
+    python python_client/setup.py bdist_wheel -p $WHLSUFFIX
 }
 
 # Check information rpm and deb package
 check_package() {
-    cd python_client/ 
-    version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
+    version=$(cat python_client/setup.py | grep "version=" | cut -f 2 -d"'")
+    package_path=python_client/dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
     wheel2json "$package_path"
 }
 
 # Install whl package
 install_client() {
-    cd python_client/
     local package_path=$1
     check_file_exist "$package_path"
     python -m pip install "$package_path"
