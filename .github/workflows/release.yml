@@ -35,7 +35,6 @@ jobs:
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && build_package"
       - name: Check package information
-      - name: Create whl file for ${{ matrix.os }}
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
              && wheel2json ${{ matrix.package_path }}"
       - name: Upload whl file
