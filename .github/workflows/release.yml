@@ -36,7 +36,7 @@ jobs:
              && build_package"
       - name: Check package information
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec ". python_client/.github/workflows/script/function.sh \
-             && check_package \"${{ matrix.package_path }}\""
+             && check_package"
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
