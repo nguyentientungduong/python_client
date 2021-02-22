@@ -22,6 +22,6 @@ build_package() {
 # Check information rpm and deb package
 check_package() {
     local package_path=$1
-    wheel2json $package_path
+    wheel2json "$package_path"
 }
 
