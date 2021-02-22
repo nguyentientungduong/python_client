@@ -30,7 +30,9 @@ check_package() {
 
 # Install whl package
 install_client() {
-    cd python_client/
+    #cd python_client/
+    pwd
+    ls
     local package_path=$1
     check_file_exist "$package_path"
     python -m pip install "$package_path"
