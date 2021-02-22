@@ -22,15 +22,16 @@ build_package() {
 
 # Check information rpm and deb package
 check_package() {
-    version=$(cat python_client/setup.py | grep "version=" | cut -f 2 -d"'")
-    package_path=python_client/dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
+    local version=$(cat python_client/setup.py | grep "version=" | cut -f 2 -d"'")
+    local package_path=python_client/dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
     wheel2json "$package_path"
 }
 
 # Install whl package
 install_client() {
-    local package_path=python_client/$1
+    local version=$(cat python_client/setup.py | grep "version=" | cut -f 2 -d"'")
+    local package_path=python_client/dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
     python -m pip install "$package_path"
 }
