@@ -38,7 +38,7 @@ jobs:
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
              && check_package"
       - name: Install package
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh && install_client ${{ matrix.package_path }}"
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh && install_client"
       - name: Config GridDB server
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
              && config_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD} ${GRIDDB_SERVER_NAME}"
