@@ -88,6 +88,16 @@ install_packages_macos() {
     pyenv install 3.6.9
     pyenv global 3.6.9
     python -m pip install --user --upgrade setuptools wheel
+
+    # Install SWIG
+    wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz
+    tar xvfz swig-3.0.12.tar.gz
+    cd swig-3.0.12
+    ./configure
+    make
+    make install
+    cd ..
+    rm swig-3.0.12.tar.gz
 }
 
 build_package_macos() {
