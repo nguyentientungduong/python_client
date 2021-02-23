@@ -48,7 +48,7 @@ RUN set -eux \
    && python -m pip install wheel-inspect \
    # Update package for creating WHL package
    && python -m pip install --user --upgrade setuptools wheel \
-   && locate Python.h
+   && updatedb && locate Python.h
 
 # Prepare softlink to install GridDB Python Client
 RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
