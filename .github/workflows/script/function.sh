@@ -99,6 +99,7 @@ install_packages_macos() {
     cd ..
     rm swig-3.0.12.tar.gz
     python -m pip install numpy pandas
+    updatedb
     locate arrayobject.h
 }
 
