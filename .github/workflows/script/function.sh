@@ -106,6 +106,7 @@ install_packages_macos() {
 }
 
 build_package_macos() {
+    source ~/.bash_profile
     python setup.py bdist_wheel
 }
 
