@@ -112,11 +112,19 @@ griddb_module = Extension('_griddb_python',
                           depends=DEPENDENTS
                           )
 
-classifiers = [
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.6"
-]
+# For MacOS
+if platform.system() == 'Darwin':
+    classifiers = [
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: MacOS :: MacOS X",
+        "Programming Language :: Python :: 3.6"
+    ]
+else:
+    classifiers = [
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python :: 3.6"
+    ]
 
 setup(name='griddb_python',
       version='0.8.3',
