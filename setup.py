@@ -6,6 +6,7 @@ setup.py file for GridDB python client
 
 from distutils.command.build import build
 import os
+import platform
 
 try:
     from setuptools import setup, Extension
@@ -73,10 +74,16 @@ COMPILE_ARGS = [
     '-std=c++0x'
 ]
 
-LIBRARIES = [
-    'rt',
-    'gridstore'
-]
+# For MacOS
+if platform.system() == 'Darwin':
+    LIBRARIES = [
+        'gridstore'
+    ]
+else:
+    LIBRARIES = [
+        'rt',
+        'gridstore'
+    ]
 
 SWIG_OPTS = [
     '-DSWIGWORDSIZE64',
