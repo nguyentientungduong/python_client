@@ -87,6 +87,8 @@ install_packages_macos() {
     brew install pyenv
     pyenv install 3.6.9
     pyenv global 3.6.9
+    echo 'eval "$(pyenv init -)"' > /root/.bash_profile
+    source /root/.bash_profile
     python -m pip install --user --upgrade setuptools wheel
 
     # Install SWIG
