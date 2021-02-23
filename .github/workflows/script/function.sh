@@ -32,6 +32,7 @@ install_client() {
     local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
     local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
+    uninstall_package()
     python -m pip install "$package_path"
 }
 
