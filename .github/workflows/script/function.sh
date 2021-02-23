@@ -99,8 +99,7 @@ install_packages_macos() {
     cd ..
     rm swig-3.0.12.tar.gz
     python -m pip install numpy pandas
-    /usr/libexec/locate.updatedb
-    locate arrayobject.h
+    ls -lah $(which python)
 }
 
 build_package_macos() {
