@@ -32,7 +32,6 @@ install_client() {
     local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
     local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
-    python -m pip uninstall -y griddb_python
     python -m pip install "$package_path"
 }
 
@@ -64,7 +63,7 @@ run_sample() {
     local username=$4
     local password=$5
 
-    #export PYTHON_PATH=`pwd`
+    install_client
     python sample/sample1.py $notification_host $notification_port \
         $cluster_name $username $password
 }
