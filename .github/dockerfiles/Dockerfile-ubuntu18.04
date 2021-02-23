@@ -12,7 +12,9 @@ RUN set -eux \
 
 # Create softlink gcc g++
 RUn set -eux \
-    && ln -sf /usr/bin/python2.7 /usr/bin/python2
+    && ln -sf /usr/bin/python2.7 /usr/bin/python2 \
+    && ln -sf /usr/bin/python3.6 /usr/bin/python3 \
+    && ln -sf /usr/bin/python3.6 /usr/bin/python
 
 # Install griddb server
 RUN set -eux \
