@@ -51,7 +51,7 @@ RUN set -eux \
    && updatedb && locate Python.h
 
 # Prepare softlink to install GridDB Python Client
-RUN ln -sf /root/.pyenv/versions/3.6.9/include/python3.6m/ /usr/include/python3.6
+RUN ln -sf /usr/include/python3.6m/ /usr/include/python3.6
 
 # Correct path to numpy header file
 RUN mkdir -p /root/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/ \
