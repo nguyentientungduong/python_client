@@ -65,8 +65,8 @@ run_sample() {
     echo "list all module installed by pip"
     python -m pip list
     echo "finish list all module installed by pip"
-    #python sample/sample1.py $notification_host $notification_port \
-    #   $cluster_name $username $password
+    python sample/sample1.py $notification_host $notification_port \
+       $cluster_name $username $password
 }
 
 # Stop GridDB server
@@ -106,11 +106,8 @@ install_packages_macos() {
     brew install griddb/griddb-c-client/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
-    echo "1234" 
     docker-machine create default
-    echo "5678" 
     eval "$(docker-machine env default)"
-    echo "91011" 
 }
 
 build_package_macos() {

@@ -81,7 +81,7 @@ jobs:
       - name: Start Griddb Server
         run: eval "$(docker-machine env default)" && docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
       - name: Run sample
-        run: . .github/workflows/script/function.sh \
+        run: source ~/.bash_profile && . .github/workflows/script/function.sh \
              && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
