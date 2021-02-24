@@ -75,7 +75,7 @@ jobs:
         run: . .github/workflows/script/function.sh \
              && build_package_macos
       - name: Start Griddb Server
-        run: docker pull griddb/griddb \
+        run: docker pull griddb/griddb:latest \
              && docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
       - name: Run sample
         run: . .github/workflows/script/function.sh \
