@@ -65,6 +65,7 @@ run_sample() {
     echo "list all module installed by pip"
     python -m pip list
     echo "finish list all module installed by pip"
+    source ~/.bash_profile
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
 }
