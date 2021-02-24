@@ -74,6 +74,8 @@ jobs:
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh \
              && build_package_macos
+      - name: Install package
+        run: . .github/workflows/script/function.sh && install_client_macos
       - name: Pull Griddb Server image
         run: eval "$(docker-machine env default)" && docker pull griddb/griddb:latest
       - name: Start Griddb Server
