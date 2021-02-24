@@ -91,6 +91,7 @@ install_packages_macos() {
     echo 'eval "$(pyenv init -)"' > ~/.bash_profile
     source ~/.bash_profile
     python -m pip install --user --upgrade setuptools wheel
+    python -m pip install wheel-inspect
 
     # Install SWIG
     wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz
@@ -113,6 +114,14 @@ install_packages_macos() {
 build_package_macos() {
     source ~/.bash_profile
     python setup.py bdist_wheel
+}
+
+# Check information rpm and deb package
+check_package() {
+    local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
+    local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
+    check_file_exist "$package_path"
+    wheel2json "$package_path"
 }
 
 # Install whl package
