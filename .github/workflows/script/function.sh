@@ -107,7 +107,8 @@ install_packages_macos() {
     brew install griddb/griddb-c-client/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
-    docker-machine create default
+    #docker-machine create default
+    docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     eval "$(docker-machine env default)"
 }
 
