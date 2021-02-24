@@ -74,9 +74,10 @@ jobs:
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh \
              && build_package_macos
+      - name: Install Griddb Server image
+        run: docker pull griddb/griddb:latest
       - name: Start Griddb Server
-        run: docker pull griddb/griddb:latest \
-             && docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
+        run: docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
       - name: Run sample
         run: . .github/workflows/script/function.sh \
              && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
