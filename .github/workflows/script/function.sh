@@ -104,7 +104,7 @@ install_packages_macos() {
     python -m pip install numpy pandas
     ls -lah $(which python)
     brew install griddb/griddb-c-client/griddb-c-client
-    bew install docker
+    brew install docker
 }
 
 build_package_macos() {
