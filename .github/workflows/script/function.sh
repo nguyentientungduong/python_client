@@ -105,8 +105,12 @@ install_packages_macos() {
     ls -lah $(which python)
     brew install griddb/griddb-c-client/griddb-c-client
     brew install docker docker-machine virtualbox
+    brew cleanup
+    echo "1234" 
     docker-machine create default
+    echo "5678" 
     eval "$(docker-machine env default)"
+    echo "91011" 
 }
 
 build_package_macos() {
