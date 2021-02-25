@@ -62,13 +62,6 @@ run_sample() {
     local cluster_name=$3
     local username=$4
     local password=$5
-    echo "list all module installed by pip"
-    python -m pip list
-    echo "finish list all module installed by pip"
-    python --version
-    updatedb
-    locate griddb_python.py
-    python -m site
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
 }
