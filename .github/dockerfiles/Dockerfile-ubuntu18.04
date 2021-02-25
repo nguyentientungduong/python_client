@@ -54,7 +54,7 @@ RUN ln -sf /usr/include/python3.6m/ /usr/include/python3.6
 
 # Correct path to numpy header file
 RUN mkdir -p /root/usr/lib/python3.6/site-packages/numpy/core/ \
-   && ln -sf /usr/local/lib/python3.6/dist-packages/numpy/core/include/ /root/usr/lib/python3.6/site-packages/numpy/core//numpy/core/include
+   && ln -sf /usr/local/lib/python3.6/dist-packages/numpy/core/include/ /root/usr/lib/python3.6/site-packages/numpy/core/include
 
 # Clean environment
 RUN set -eux \
