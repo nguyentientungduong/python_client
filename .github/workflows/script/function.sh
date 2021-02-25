@@ -66,6 +66,7 @@ run_sample() {
     python -m pip list
     echo "finish list all module installed by pip"
     python --version
+    updatedb
     locate griddb_python.py
     python -m site
     python sample/sample1.py $notification_host $notification_port \
