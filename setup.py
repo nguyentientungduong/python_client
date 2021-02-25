@@ -67,7 +67,7 @@ DEPENDENTS = [
 INCLUDES = [
     'include',
     'src',
-    os.environ['HOME'] + sysconfig.get_path('purelib') + '/numpy/core/include/'
+    sysconfig.get_path('purelib') + '/numpy/core/include/'
 ]
 
 COMPILE_ARGS = [
