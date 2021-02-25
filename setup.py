@@ -6,7 +6,7 @@ setup.py file for GridDB python client
 
 from distutils.command.build import build
 import os
-import platform
+import platform, sysconfig
 
 try:
     from setuptools import setup, Extension
@@ -67,7 +67,7 @@ DEPENDENTS = [
 INCLUDES = [
     'include',
     'src',
-    os.environ['HOME'] + '/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/include/'
+    os.environ['HOME'] + sysconfig.get_path('purelib') + '/numpy/core/include/'
 ]
 
 COMPILE_ARGS = [
