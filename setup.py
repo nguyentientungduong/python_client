@@ -64,10 +64,11 @@ DEPENDENTS = [
     'include/gridstore.h'
 ]
 
+site_packages_path = sysconfig.get_path('purelib')
 INCLUDES = [
     'include',
     'src',
-    sysconfig.get_path('purelib') + '/numpy/core/include/'
+    site_packages_path + '/numpy/core/include/'
 ]
 
 COMPILE_ARGS = [
@@ -123,7 +124,7 @@ if platform.system() == 'Darwin':
     data_files=[
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client", cclient_version
+                  site_packages_path + "/griddb/griddb-c-client", cclient_version
               ),
               [
                   os.path.join("griddb-c-client", cclient_version, "LICENSE"),
@@ -132,7 +133,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party",
               ),
@@ -155,7 +156,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/ebb",
               ),
@@ -163,7 +164,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/omaha",
               ),
@@ -175,7 +176,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/picojson",
               ),
@@ -187,7 +188,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/purewell",
               ),
@@ -201,7 +202,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/sha2",
               ),
@@ -209,7 +210,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/uuid",
               ),
@@ -221,7 +222,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/yield",
               ),
@@ -232,7 +233,7 @@ if platform.system() == 'Darwin':
               ],
           ),
           (
-              "lib/python3.6/site-packages",
+              site_packages_path,
               [
                   os.path.join(
                       "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
@@ -245,14 +246,14 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  site_packages_path + "/griddb/griddb-c-client",
                   cclient_version,
                   "include",
               ),
               [os.path.join("griddb-c-client", cclient_version, "include/gridstore.h")],
           ),
           (
-              os.path.join("lib/python3.6/site-packages/griddb/Sample"),
+              os.path.join(site_packages_path + "/griddb/Sample"),
               ["sample/sample1.py"],
           ),
       ] 
