@@ -234,7 +234,7 @@ if platform.system() == 'Darwin':
                       "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/yield/yield.txt"
                   )
               ],
-          ),"""
+          ),
           (
 
               f"lib/python3.6/site-packages/griddb/griddb-c-client/{cclient_version}/lib",
@@ -245,7 +245,7 @@ if platform.system() == 'Darwin':
                   f"/usr/local/Cellar/griddb-c-client/4.5.1/lib/libgridstore.dylib"
 
               ]
-          ),
+          ),"""
           (
               os.path.join(
                   "lib/python3.6/site-packages/griddb/griddb-c-client",
