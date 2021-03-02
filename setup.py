@@ -140,18 +140,19 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/3rd_party.md"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/3rd_party.md"
                   ),
                   os.path.join(
+                      "/usr/local/Cellar",
                       "griddb-c-client",
                       cclient_version,
                       "3rd_party/Apache_License-2.0.txt",
                   ),
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/BSD_License.txt"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/BSD_License.txt"
                   ),
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/MIT_License.txt"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/MIT_License.txt"
                   ),
               ],
           ),
@@ -161,7 +162,7 @@ if platform.system() == 'Darwin':
                   cclient_version,
                   "3rd_party/ebb",
               ),
-              [os.path.join("griddb-c-client", cclient_version, "3rd_party/ebb/LICENSE")],
+              [os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/ebb/LICENSE")],
           ),
           (
               os.path.join(
@@ -171,7 +172,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/omaha/COPYING"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/omaha/COPYING"
                   )
               ],
           ),
@@ -183,7 +184,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/picojson/README.mkdn"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/picojson/README.mkdn"
                   )
               ],
           ),
@@ -195,6 +196,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
+                      "/usr/local/Cellar",
                       "griddb-c-client",
                       cclient_version,
                       "3rd_party/purewell/purewell.txt",
@@ -207,7 +209,7 @@ if platform.system() == 'Darwin':
                   cclient_version,
                   "3rd_party/sha2",
               ),
-              [os.path.join("griddb-c-client", cclient_version, "3rd_party/sha2/README")],
+              [os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/sha2/README")],
           ),
           (
               os.path.join(
@@ -217,7 +219,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/uuid/COPYING"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/uuid/COPYING"
                   )
               ],
           ),
@@ -229,7 +231,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "3rd_party/yield/yield.txt"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "3rd_party/yield/yield.txt"
                   )
               ],
           ),
@@ -237,11 +239,11 @@ if platform.system() == 'Darwin':
               "lib/python3.6/site-packages",
               [
                   os.path.join(
-                      "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
                   ),
-                  os.path.join("griddb-c-client", cclient_version, "lib/libgridstore.a"),
+                  os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.a"),
                   os.path.join(
-                      "griddb-c-client", cclient_version, "lib/libgridstore.dylib"
+                      "/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.dylib"
                   ),
               ],
           ),
@@ -251,7 +253,7 @@ if platform.system() == 'Darwin':
                   cclient_version,
                   "include",
               ),
-              [os.path.join("griddb-c-client", cclient_version, "include/gridstore.h")],
+              [os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "include/gridstore.h")],
           ),
           (
               os.path.join("lib/python3.6/site-packages/griddb/Sample"),
