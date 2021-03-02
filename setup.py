@@ -236,7 +236,11 @@ if platform.system() == 'Darwin':
               ],
           ),"""
           (
-              "lib/python3.6/site-packages",
+             os.path.join(
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  cclient_version,
+                  "lib",
+              ),
               [
                   os.path.join(
                       "/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
