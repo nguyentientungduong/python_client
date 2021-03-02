@@ -110,6 +110,7 @@ install_packages_macos() {
     docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     rm ~/.docker/machine/cache/boot2docker.iso
     eval "$(docker-machine env default)"
+    ls -lah /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/griddb/griddb-c-client/4.5.1/LICENSE
 }
 
 build_package_macos() {
