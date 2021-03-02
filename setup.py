@@ -130,7 +130,7 @@ if platform.system() == 'Darwin':
               [
                   os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "LICENSE"),
                   os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "README.md"),
-              ],
+              ]
           ),
           """(
               os.path.join(
@@ -244,7 +244,7 @@ if platform.system() == 'Darwin':
                   f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.a",
                   f"/usr/local/Cellar/griddb-c-client/4.5.1/lib/libgridstore.dylib"
 
-              ],
+              ]
           ),
           (
               os.path.join(
