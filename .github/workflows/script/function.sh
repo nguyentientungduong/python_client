@@ -110,7 +110,7 @@ install_packages_macos() {
     docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     rm ~/.docker/machine/cache/boot2docker.iso
     eval "$(docker-machine env default)"
-    ls -lah /usr/local/Cellar/griddb/griddb-c-client/4.5.1
+    ls -lah /usr/local/Cellar/griddb-c-client/4.5.1
 }
 
 build_package_macos() {

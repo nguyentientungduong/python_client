@@ -128,8 +128,8 @@ if platform.system() == 'Darwin':
                   "lib/python3.6/site-packages/griddb/griddb-c-client", cclient_version
               ),
               [
-                  os.path.join("/usr/local/Cellar", "griddb/griddb-c-client", cclient_version, "LICENSE"),
-                  os.path.join("/usr/local/Cellar", "griddb/griddb-c-client", cclient_version, "README.md"),
+                  os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "LICENSE"),
+                  os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "README.md"),
               ],
           ),
           (
