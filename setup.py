@@ -248,7 +248,7 @@ if platform.system() == 'Darwin':
                   os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.a"),
                   os.path.join(
                       "/usr/local/Cellar", "griddb-c-client", cclient_version, "lib/libgridstore.dylib"
-                  ),
+                  )
               ],
           ),
           (
