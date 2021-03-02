@@ -243,8 +243,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.0.dylib",  
-                  f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.a"),
-                  f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.dylib"
+                  f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.a",
                   f"/usr/local/Cellar/griddb-c-client/{cclient_version}/lib/libgridstore.dylib"
 
               ],
