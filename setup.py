@@ -125,11 +125,11 @@ if platform.system() == 'Darwin':
     data_files=[
           (
               os.path.join(
-                  site_packages_path + "griddb/griddb-c-client", cclient_version
+                  "lib/python3.6/site-packages/griddb/griddb-c-client", cclient_version
               ),
               [
-                  os.path.join("griddb-c-client", cclient_version, "LICENSE"),
-                  os.path.join("griddb-c-client", cclient_version, "README.md"),
+                  os.path.join(site_packages_path, "griddb/griddb-c-client", cclient_version, "LICENSE"),
+                  os.path.join(site_packages_path, "griddb/griddb-c-client", cclient_version, "README.md"),
               ],
           ),
           (
