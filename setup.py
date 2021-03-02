@@ -131,8 +131,8 @@ if platform.system() == 'Darwin':
                   os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "LICENSE"),
                   os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "README.md")
               ]
-          ),
-          """(
+          """),
+          (
               os.path.join(
                   "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
