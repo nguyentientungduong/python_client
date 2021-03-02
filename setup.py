@@ -114,6 +114,7 @@ griddb_module = Extension('_griddb_python',
                           )
 
 data_files = []
+cclient_version = "4.5.1"
 # For MacOS
 if platform.system() == 'Darwin':
     classifiers = [
