@@ -253,11 +253,12 @@ if platform.system() == 'Darwin':
                   "include"
               ),
               [os.path.join("/usr/local/Cellar", "griddb-c-client", cclient_version, "include/gridstore.h")],
-          ),"""
+          )
           (
               os.path.join("lib/python3.6/site-packages/griddb/Sample"),
               ["sample/sample1.py"],
-          )
+          ),"""
+          )   
       ] 
 else:
     classifiers = [
