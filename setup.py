@@ -125,7 +125,7 @@ if platform.system() == 'Darwin':
     data_files=[
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client", cclient_version
+                  "lib/python3.6/site-packages/griddb/griddb-c-client", cclient_version
               ),
               [
                   os.path.join("griddb-c-client", cclient_version, "LICENSE"),
@@ -134,7 +134,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party",
               ),
@@ -157,7 +157,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/ebb",
               ),
@@ -165,7 +165,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/omaha",
               ),
@@ -177,7 +177,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/picojson",
               ),
@@ -189,7 +189,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/purewell",
               ),
@@ -203,7 +203,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/sha2",
               ),
@@ -211,7 +211,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/uuid",
               ),
@@ -223,7 +223,7 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "3rd_party/yield",
               ),
@@ -234,7 +234,7 @@ if platform.system() == 'Darwin':
               ],
           ),
           (
-              site_packages_path,
+              "lib/python3.6/site-packages",
               [
                   os.path.join(
                       "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
@@ -247,14 +247,14 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  site_packages_path + "/griddb/griddb-c-client",
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
                   cclient_version,
                   "include",
               ),
               [os.path.join("griddb-c-client", cclient_version, "include/gridstore.h")],
           ),
           (
-              os.path.join(site_packages_path + "/griddb/Sample"),
+              os.path.join("lib/python3.6/site-packages/griddb/Sample"),
               ["sample/sample1.py"],
           ),
       ] 
