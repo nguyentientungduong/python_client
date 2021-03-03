@@ -249,7 +249,7 @@ if platform.system() == 'Darwin':
                   cclient_version,
                   "include"
               ),
-              ["c_client-{}".format(cclient_version), "include/gridstore.h")],
+              [os.path.join("c_client-{}".format(cclient_version), "include/gridstore.h")],
           ),
           (
               os.path.join("lib/python3.6/site-packages/griddb/Sample"),
