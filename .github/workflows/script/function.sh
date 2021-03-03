@@ -5,6 +5,7 @@ readonly UBUNTU=Ubuntu
 readonly CENTOS=Centos
 readonly OPENSUSE=Opensuse
 readonly WHLSUFFIX=manylinux1_x86_64
+readonly C_CLIENT_VERSION=4.5.1
 
 # Check if the file exists with the parameter path passed
 check_file_exist() {
@@ -101,7 +102,7 @@ install_packages_macos() {
     rm swig-3.0.12.tar.gz
     python -m pip install numpy pandas
     ls -lah $(which python)
-    brew install griddb/griddb-c-client/griddb-c-client
+    #brew install griddb/griddb-c-client/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
     #docker-machine create default
@@ -112,10 +113,10 @@ install_packages_macos() {
     eval "$(docker-machine env default)"
     ls -lah /usr/local/Cellar/griddb-c-client/4.5.1
     # Python Client for MacOS will include C Client
-    wget https://github.com/griddb/c_client/archive/v4.5.1.tar.gz
-    tar xvfz v4.5.1.tar.gz
-    rm v4.5.1.tar.gz
-    cd client/c
+    wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
+    tar xvfz v$C_CLIENT_VERSION.tar.gz
+    rm v$C_CLIENT_VERSION.tar.gz
+    cd c_client-$C_CLIENT_VERSION/c
     ./bootstrap.sh
     ./configure
     make 
