@@ -112,6 +112,7 @@ install_packages_macos() {
     rm ~/.docker/machine/cache/boot2docker.iso
     eval "$(docker-machine env default)"
     # Python Client for MacOS will include C Client
+    brew install autoconf automake libtool
     wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
     tar xvfz v$C_CLIENT_VERSION.tar.gz
     rm v$C_CLIENT_VERSION.tar.gz
