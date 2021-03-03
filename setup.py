@@ -143,9 +143,7 @@ if platform.system() == 'Darwin':
                       "c_client-{}".format(cclient_version), "3rd_party/3rd_party.md"
                   ),
                   os.path.join(
-                      "/usr/local/Cellar",
-                      "griddb-c-client",
-                      cclient_version,
+                      "c_client-{}".format(cclient_version),
                       "3rd_party/Apache_License-2.0.txt",
                   ),
                   os.path.join(
