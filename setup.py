@@ -235,8 +235,8 @@ if platform.system() == 'Darwin':
               f"lib/python3.6/site-packages/griddb/griddb-c-client/{cclient_version}/lib",
               
               [
-                  f"c_client-{cclient_version}/bin/libgridstore.0.dylib",  
-                  f"c_client-{cclient_version}/bin/libgridstore.a",
+                  f"c_client-{cclient_version}/bin/libgridstore.0.0.0.dylib",  
+                  f"c_client-{cclient_version}/bin/libgridstore.0.dylib",
                   f"c_client-{cclient_version}/bin/libgridstore.dylib"
 
               ]
