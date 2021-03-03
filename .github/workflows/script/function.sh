@@ -63,6 +63,7 @@ run_sample() {
     local cluster_name=$3
     local username=$4
     local password=$5
+    locate griddb_python.py
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
 }
