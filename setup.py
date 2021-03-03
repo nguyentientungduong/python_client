@@ -182,7 +182,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "c_client-{}".format(cclient_version), "3rd_party/picojson/README.mkdn"
+                      "c_client-{}".format(cclient_version), "3rd_party/picojson/org/include/README.mkdn"
                   )
               ],
           ),
