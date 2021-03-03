@@ -111,7 +111,6 @@ install_packages_macos() {
     docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     rm ~/.docker/machine/cache/boot2docker.iso
     eval "$(docker-machine env default)"
-    ls -lah /usr/local/Cellar/griddb-c-client/4.5.1
     # Python Client for MacOS will include C Client
     wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
     tar xvfz v$C_CLIENT_VERSION.tar.gz
