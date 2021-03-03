@@ -115,6 +115,7 @@ install_packages_macos() {
     wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
     tar xvfz v$C_CLIENT_VERSION.tar.gz
     rm v$C_CLIENT_VERSION.tar.gz
+    ls
     cd c_client-$C_CLIENT_VERSION/c
     ./bootstrap.sh
     ./configure
