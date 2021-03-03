@@ -214,7 +214,7 @@ if platform.system() == 'Darwin':
               ),
               [
                   os.path.join(
-                      "c_client-{}".format(cclient_version), "3rd_party/uuid/COPYING"
+                      "c_client-{}".format(cclient_version), "3rd_party/uuid/uuid/COPYING"
                   )
               ],
           ),
