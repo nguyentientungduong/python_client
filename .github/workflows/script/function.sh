@@ -120,7 +120,7 @@ install_packages_macos() {
     cd c_client-$C_CLIENT_VERSION/client/c
     ./bootstrap.sh
     ./configure
-    make 
+    make install
 }
 
 build_package_macos() {
