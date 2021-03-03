@@ -111,6 +111,14 @@ install_packages_macos() {
     rm ~/.docker/machine/cache/boot2docker.iso
     eval "$(docker-machine env default)"
     ls -lah /usr/local/Cellar/griddb-c-client/4.5.1
+    # Python Client for MacOS will include C Client
+    wget https://github.com/griddb/c_client/archive/v4.5.1.tar.gz
+    tar xvfz v4.5.1.tar.gz
+    rm v4.5.1.tar.gz
+    cd client/c
+    ./bootstrap.sh
+    ./configure
+    make 
 }
 
 build_package_macos() {
