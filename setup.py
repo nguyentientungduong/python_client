@@ -232,7 +232,7 @@ if platform.system() == 'Darwin':
           ),
           (
 
-              f"lib/python3.6/site-packages/griddb/griddb-c-client/{cclient_version}/lib",
+              f"lib/python3.6/site-packages",
               
               [
                   f"c_client-{cclient_version}/bin/libgridstore.0.0.0.dylib",  
@@ -250,7 +250,7 @@ if platform.system() == 'Darwin':
               [os.path.join("c_client-{}".format(cclient_version), "client/c/include/gridstore.h")],
           ),
           (
-              os.path.join("lib/python3.6/site-packages/griddb_python/Sample"),
+              os.path.join("lib/python3.6/site-packages/griddb/Sample"),
               ["sample/sample1.py"],
           )
       ] 
