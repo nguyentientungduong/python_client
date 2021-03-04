@@ -201,7 +201,8 @@ if platform.system() == 'Darwin':
           ),
           (
               os.path.join(
-                  "c_client-{}".format(cclient_version), 
+                  "lib/python3.6/site-packages/griddb/griddb-c-client",
+                  cclient_version,
                   "3rd_party/sha2",
               ),
               [os.path.join("c_client-{}".format(cclient_version), "3rd_party/sha2/README")],
