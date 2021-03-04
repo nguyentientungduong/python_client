@@ -121,7 +121,7 @@ install_packages_macos() {
     #./bootstrap.sh
     #./configure
     #make install
-    make
+    #make
     brew install griddb/griddb-c-client/griddb-c-client
 }
 
