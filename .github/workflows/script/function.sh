@@ -118,11 +118,9 @@ install_packages_macos() {
     rm v$C_CLIENT_VERSION.tar.gz
 
     cd c_client-$C_CLIENT_VERSION/client/c
-    #./bootstrap.sh
-    #./configure
-    #make install
-    #make
-    brew install griddb/griddb-c-client/griddb-c-client
+    ./bootstrap.sh
+    ./configure
+    make
 }
 
 build_package_macos() {
@@ -151,6 +149,20 @@ install_client_macos() {
     local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
     check_file_exist "$package_path"
     python -m pip install --upgrade --force-reinstall "$package_path"
+}
+
+# Run sample of Java Client
+# You can refer to https://github.com/griddb/python_client
+run_sample_macos() {
+    # Run sample
+    local notification_host=$1
+    local notification_port=$2
+    local cluster_name=$3
+    local username=$4
+    local password=$5
+    export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
+    python sample/sample1.py $notification_host $notification_port \
+       $cluster_name $username $password
 }
 
 
