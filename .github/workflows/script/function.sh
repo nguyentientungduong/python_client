@@ -127,7 +127,8 @@ install_packages_macos() {
 build_package_macos() {
     source ~/.bash_profile
     ls -lah ./c_client-$C_CLIENT_VERSION/bin
-    export DYLD_LIBRARY_PATH=${DYLD_LIBRARY_PATH}:./c_client-$C_CLIENT_VERSION/bin/
+    export LIBRARY_PATH=$LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
+    export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
     python setup.py bdist_wheel
     # Remove C Client in system: WHL package will include C Client
     cd c_client-$C_CLIENT_VERSION/client/c
