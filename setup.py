@@ -78,7 +78,7 @@ COMPILE_ARGS = [
 # For MacOS
 if platform.system() == 'Darwin':
     LIBRARIES = [
-        'gridstore'
+        #'gridstore'
     ]
 else:
     LIBRARIES = [
