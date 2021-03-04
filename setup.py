@@ -236,10 +236,16 @@ if platform.system() == 'Darwin':
               f"lib/python3.6/site-packages",
               
               [
-                  f"c_client-{cclient_version}/bin/libgridstore.0.0.0.dylib",  
-                  f"c_client-{cclient_version}/bin/libgridstore.0.dylib",
-                  f"c_client-{cclient_version}/bin/libgridstore.dylib"
-
+                  #f"c_client-{cclient_version}/bin/libgridstore.0.0.0.dylib",  
+                  #f"c_client-{cclient_version}/bin/libgridstore.0.dylib",
+                  #f"c_client-{cclient_version}/bin/libgridstore.dylib"
+                  os.path.join(
+                      "/usr/local/Cellar/griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
+                  ),
+                  os.path.join("/usr/local/Cellar/griddb-c-client", cclient_version, "lib/libgridstore.a"),
+                  os.path.join(
+                      "/usr/local/Cellar/griddb-c-client", cclient_version, "lib/libgridstore.dylib"
+                  ),
               ]
           ),
           (

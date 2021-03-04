@@ -118,10 +118,11 @@ install_packages_macos() {
     rm v$C_CLIENT_VERSION.tar.gz
 
     cd c_client-$C_CLIENT_VERSION/client/c
-    ./bootstrap.sh
-    ./configure
+    #./bootstrap.sh
+    #./configure
     #make install
     make
+    brew install griddb/griddb-c-client/griddb-c-client
 }
 
 build_package_macos() {
@@ -133,6 +134,7 @@ build_package_macos() {
     # Remove C Client in system: WHL package will include C Client
     cd c_client-$C_CLIENT_VERSION/client/c
     #make uninstall
+    brew uninstall griddb-c-client
 }
 
 # Check information rpm and deb package
