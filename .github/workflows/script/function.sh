@@ -156,7 +156,7 @@ install_client_macos() {
 # You can refer to https://github.com/griddb/python_client
 run_sample_macos() {
    eval "$(docker-machine env default)"
-   docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+   docker login -u dangtrungtin@gmail.com -p Confident100 #bad bad bad
    docker pull griddb/griddb:latest
     # Run sample
     local notification_host=$1
