@@ -160,6 +160,7 @@ run_sample_macos() {
     local cluster_name=$3
     local username=$4
     local password=$5
+    export LIBRARY_PATH=$LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
