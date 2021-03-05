@@ -102,7 +102,7 @@ install_packages_macos() {
     rm swig-3.0.12.tar.gz
     python -m pip install numpy pandas
     ls -lah $(which python)
-    #brew install griddb/griddb-c-client/griddb-c-client
+    brew install griddb/griddb-c-client/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
     #docker-machine create default
@@ -118,9 +118,9 @@ install_packages_macos() {
     rm v$C_CLIENT_VERSION.tar.gz
 
     cd c_client-$C_CLIENT_VERSION/client/c
-    ./bootstrap.sh
-    ./configure
-    make
+    #./bootstrap.sh
+    #./configure
+    #make
 }
 
 build_package_macos() {
@@ -130,9 +130,9 @@ build_package_macos() {
     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
     python setup.py bdist_wheel
     # Remove C Client in system: WHL package will include C Client
-    cd c_client-$C_CLIENT_VERSION/client/c
+    #cd c_client-$C_CLIENT_VERSION/client/c
     #make uninstall
-    #brew uninstall griddb-c-client
+    brew uninstall griddb-c-client
 }
 
 # Check information rpm and deb package
