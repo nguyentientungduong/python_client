@@ -132,7 +132,7 @@ build_package_macos() {
     # Remove C Client in system: WHL package will include C Client
     cd c_client-$C_CLIENT_VERSION/client/c
     #make uninstall
-    brew uninstall griddb-c-client
+    #brew uninstall griddb-c-client
 }
 
 # Check information rpm and deb package
