@@ -79,6 +79,11 @@ jobs:
              && check_package_macos
       - name: Install package
         run: . .github/workflows/script/function.sh && source ~/.bash_profile && install_client_macos
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Pull Griddb Server image
         run: eval "$(docker-machine env default)" && docker pull griddb/griddb:latest
       - name: Start Griddb Server
