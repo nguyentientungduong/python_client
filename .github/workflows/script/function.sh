@@ -133,7 +133,7 @@ build_package_macos() {
     # Remove C Client in system: WHL package will include C Client
     #cd c_client-$C_CLIENT_VERSION/client/c
     #make uninstall
-    brew uninstall griddb-c-client
+    #brew uninstall griddb-c-client
 }
 
 # Check information rpm and deb package
@@ -161,10 +161,10 @@ run_sample_macos() {
     local cluster_name=$3
     local username=$4
     local password=$5
-    export LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
-    export DYLD_FALLBACK_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
-    export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
-    ls /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/
+    #export LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
+    #export DYLD_FALLBACK_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
+    #export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
+    #ls /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/
 
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
