@@ -162,7 +162,6 @@ run_sample_macos() {
     local password=$5
     export LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
-    ls ./c_client-$C_CLIENT_VERSION/bin/
     ls /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/
     python sample/sample1.py $notification_host $notification_port \
        $cluster_name $username $password
