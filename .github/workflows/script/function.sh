@@ -161,6 +161,7 @@ run_sample_macos() {
     local cluster_name=$3
     local username=$4
     local password=$5
+    docker exec -it griddb /bin/bash -c "gs_stat -u admin/admin"
     #export LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     #export DYLD_FALLBACK_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     #export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
