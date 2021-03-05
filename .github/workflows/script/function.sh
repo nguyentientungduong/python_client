@@ -121,6 +121,7 @@ install_packages_macos() {
     #./bootstrap.sh
     #./configure
     #make
+    brew install openssl
 }
 
 build_package_macos() {
