@@ -162,6 +162,7 @@ run_sample_macos() {
     local username=$4
     local password=$5
     brew update
+    brew upgrade
     export LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     ls /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/
