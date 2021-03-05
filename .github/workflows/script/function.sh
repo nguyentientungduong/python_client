@@ -155,6 +155,9 @@ install_client_macos() {
 # Run sample of Java Client
 # You can refer to https://github.com/griddb/python_client
 run_sample_macos() {
+   eval "$(docker-machine env default)"
+   docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+   docker pull griddb/griddb:latest
     # Run sample
     local notification_host=$1
     local notification_port=$2
