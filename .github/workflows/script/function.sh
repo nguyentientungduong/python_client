@@ -164,7 +164,7 @@ run_sample_macos() {
     sudo launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
 
     docker login -u dangtrungtin -p Confident100 #bad bad bad
-    docker pull griddb/griddb:4.5.2-centos7
+    docker pull griddb:4.5.2-bionic
     docker run -i -d --name griddb -e GRIDDB_CLUSTER_NAME=griddb griddb:4.5.2-bionic
     # Run sample
     local notification_host=$1
