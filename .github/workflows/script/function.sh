@@ -158,7 +158,7 @@ run_sample_macos() {
    eval "$(docker-machine env default)"
    docker login -u dangtrungtin -p Confident100 #bad bad bad
    docker pull griddb/griddb
-    docker run -t -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=griddb griddb/griddb
+    docker run -it -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=griddb griddb/griddb
     # Run sample
     local notification_host=$1
     local notification_port=$2
