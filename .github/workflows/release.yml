@@ -82,7 +82,7 @@ jobs:
       - name: Pull Griddb Server image
         run: eval "$(docker-machine env default)" && docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} && docker pull griddb/griddb:latest
       - name: Start Griddb Server
-        run: echo 123 #eval "$(docker-machine env default)" && docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
+        run: eval "$(docker-machine env default)" && docker run -t -d --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
