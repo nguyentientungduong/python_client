@@ -156,12 +156,12 @@ install_client_macos() {
 # You can refer to https://github.com/griddb/python_client
 run_sample_macos() {
     eval "$(docker-machine env default)"
-    defaults write /Library/Preferences/com.apple.alf globalstate -int 0
-    launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
-    launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 0
+    sudo launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+    sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
 
-    launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
-    launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+    sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    sudo launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
 
     docker login -u dangtrungtin -p Confident100 #bad bad bad
     docker pull griddb/griddb
