@@ -155,9 +155,16 @@ install_client_macos() {
 # Run sample of Java Client
 # You can refer to https://github.com/griddb/python_client
 run_sample_macos() {
-   eval "$(docker-machine env default)"
-   docker login -u dangtrungtin -p Confident100 #bad bad bad
-   docker pull griddb/griddb
+    eval "$(docker-machine env default)"
+    defaults write /Library/Preferences/com.apple.alf globalstate -int 0
+    launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+    launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+
+    launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+
+    docker login -u dangtrungtin -p Confident100 #bad bad bad
+    docker pull griddb/griddb
     docker run -i -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=griddb griddb/griddb
     # Run sample
     local notification_host=$1
