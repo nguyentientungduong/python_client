@@ -157,7 +157,8 @@ install_client_macos() {
 run_sample_macos() {
    eval "$(docker-machine env default)"
    docker login -u dangtrungtin -p Confident100 #bad bad bad
-   docker pull griddb/griddb:latest
+   docker pull griddb/griddb
+    docker run -t -d -name griddb --network="host" griddb/griddb
     # Run sample
     local notification_host=$1
     local notification_port=$2
