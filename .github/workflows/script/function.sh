@@ -155,6 +155,11 @@ install_client_macos() {
 # Run sample of Java Client
 # You can refer to https://github.com/griddb/python_client
 run_sample_macos() {
+    # run sample with server griddb
+    python sample/sample1.py $notification_host $notification_port \
+       $cluster_name $username $password
+
+
     eval "$(docker-machine env default)"
     sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 0
     sudo launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
@@ -165,7 +170,7 @@ run_sample_macos() {
 
     docker login -u dangtrungtin -p Confident100 #bad bad bad
     docker pull griddb/griddb:4.5.2-centos7
-    docker run -i -d --name griddb -e GRIDDB_CLUSTER_NAME=griddb griddb/griddb:4.5.2-centos7
+    docker run -i -d --network="host" -e GRIDDB_CLUSTER_NAME=griddbcentos -e NOTIFICATION_PORT=31998 griddb/griddb:4.5.2-centos7
     # Run sample
     local notification_host=$1
     local notification_port=$2
@@ -178,8 +183,7 @@ run_sample_macos() {
     #export DYLD_LIBRARY_PATH="/Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/"
     #ls /Users/runner/.pyenv/versions/3.6.9/lib/python3.6/site-packages/
 
-    python sample/sample1.py $notification_host $notification_port \
-       $cluster_name $username $password
+    python sample/sample1.py $notification_host 31998 griddbcentos $username $password
 }
 
 
