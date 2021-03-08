@@ -165,7 +165,7 @@ run_sample_macos() {
 
     docker login -u dangtrungtin -p Confident100 #bad bad bad
     docker pull griddb/griddb:4.5.2-centos7
-    docker run -i -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=griddb griddb/griddb:4.5.2-centos7
+    docker run -i -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=griddb griddb:4.5.2-bionic
     # Run sample
     local notification_host=$1
     local notification_port=$2
