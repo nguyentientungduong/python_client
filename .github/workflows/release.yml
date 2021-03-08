@@ -80,10 +80,12 @@ jobs:
       - name: Install package
         run: . .github/workflows/script/function.sh && source ~/.bash_profile && install_client_macos
       - name: Pull Griddb Server image
-        run: eval "$(docker-machine env default)" && docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} && docker pull griddb/griddb:latest
+        run: echo "da comment" #eval "$(docker-machine env default)" && docker login -u dangtrungtin -p Confident100 && docker pull griddb/griddb
       - name: Start Griddb Server
         run: |
           eval "$(docker-machine env default)"
+          docker login -u dangtrungtin -p Confident100
+          docker pull griddb/griddb
           docker run -t -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
           docker exec -i griddb /bin/bash -c "gs_stat -u admin/admin"
           python sample/sample1.py 239.0.0.1 31999 griddb admin admin
