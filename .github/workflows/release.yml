@@ -52,12 +52,3 @@ jobs:
       - name: Uninstall package
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
              && uninstall_package ${GRIDDB_PACKAGE_NAME} ${{ matrix.os }}"
-      - name: Upload whl file
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.package_path }}
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
-          file_glob: true
