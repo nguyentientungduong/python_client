@@ -28,9 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Start docker GridDB Server
-        run: docker pull griddb/griddb && docker run -t -d --network="host" --name griddb griddb/griddb
+        run: docker pull griddb/griddb && docker run --network="host" --name griddb griddb/griddb
       - name: Check infor griddb server
-        run: timeout 15 tail > /dev/null && docker exec -t griddb /bin/bash -c "gs_stat -u admin/admin"
+        run: docker exec -t griddb /bin/bash -c "gs_stat -u admin/admin"
       - name: Build Docker Image
         run: docker build -t ${{ matrix.docker_image }} -f ${{ matrix.docker_file }} .
       - name: Run Docker Image
