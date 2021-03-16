@@ -61,6 +61,3 @@ jobs:
           overwrite: true
           file_glob: true
           file_glob: true
-      - name: Run sample
-        run: source ~/.bash_profile && . .github/workflows/script/function.sh \
-             && run_sample_macos ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
