@@ -42,7 +42,7 @@ jobs:
       - name: Start docker GridDB Server
         run: docker pull griddb/griddb && docker run -t -d --network="host" --name griddb griddb/griddb
       - name: Check infor griddb server
-        run: docker exec -t griddb -c /bin/bash -c "gs_stat -u admin/admin" && python sample/sample1.py dockerGridDB admin admin
+        run: docker exec -t griddb -c /bin/bash -c "gs_stat -u admin/admin" && python sample/sample1.py 239.0.0.1 31999 dockerGridDB admin admin
       - name: Run sample
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
              && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
