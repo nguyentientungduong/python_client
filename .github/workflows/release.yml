@@ -39,12 +39,10 @@ jobs:
              && check_package"
       - name: Install package
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh && install_client"
-      - name: Config GridDB server
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
-             && config_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD} ${GRIDDB_SERVER_NAME}"
-      - name: Start server
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
-             && start_griddb ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD} ${GRIDDB_SERVER_NAME}"
+      - name: Start docker GridDB Server
+        run: docker pull griddb/griddb && docker run -t -d --network="host" --name griddb griddb/griddb
+      - name: Check infor griddb server
+        run: docker exec -t griddb -c /bin/bash -c "gs_stat -u admin/admin" && python sample/sample1.py dockerGridDB admin admin
       - name: Run sample
         run: docker exec ${{ matrix.container_name }} /bin/bash -xec "cd python_client/ && . .github/workflows/script/function.sh \
              && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
@@ -62,40 +60,6 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
-
-  release_package_on_macos_10_15:
-    name: Create and release whl file for MacOS 10.15
-    runs-on: macos-10.15
-    steps:
-      - uses: actions/checkout@v1
-      - name: Prepare environment for MacOS 10.15
-        run: . .github/workflows/script/function.sh \
-             && install_packages_macos
-      - name: Create whl file for MacOS 10.15
-        run: . .github/workflows/script/function.sh \
-             && build_package_macos
-      - name: Check package information
-        run: source ~/.bash_profile && . .github/workflows/script/function.sh \
-             && check_package_macos
-      - name: Install package
-        run: . .github/workflows/script/function.sh && source ~/.bash_profile && install_client_macos
-      - name: Pull Griddb Server image
-        run: echo "da comment" #eval "$(docker-machine env default)" && docker login -u dangtrungtin -p Confident100 && docker pull griddb/griddb
-      - name: Start Griddb Server
-        run: |
-          eval "$(docker-machine env default)"
-          docker login -u dangtrungtin -p Confident100
-          docker pull griddb/griddb
-          docker run -t -d --name griddb --network="host" -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} griddb/griddb
-          docker exec -i griddb /bin/bash -c "gs_stat -u admin/admin"
-          python sample/sample1.py 239.0.0.1 31999 griddb admin admin
-      - name: Upload whl file
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/griddb_python-*.whl
-          tag: ${{ github.ref }}
-          overwrite: true
           file_glob: true
       - name: Run sample
         run: source ~/.bash_profile && . .github/workflows/script/function.sh \
