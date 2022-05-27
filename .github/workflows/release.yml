@@ -1,0 +1,107 @@
+name: Create package on release
+
+on: create
+
+env:
+  GRIDDB_IMAGE: griddb/griddb
+  GRIDDB_SERVER_NAME: "griddb"
+  GRIDDB_NOTIFICATION_ADDRESS: "239.0.0.1"
+  GRIDDB_NOTIFICATION_PORT: "31999"
+  GRIDDB_USERNAME: "admin"
+  GRIDDB_PASSWORD: "admin"
+  PACKAGE_NAME: "griddb_python"
+
+jobs:
+  release_package:
+    name: Create and release ${{ matrix.file_type }} file for ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - os: Ubuntu
+            docker_file: .github/dockerfiles/Dockerfile-ubuntu18.04
+            docker_image: ubuntu
+            container_name: ubuntu_container
+            package_path: dist/griddb_python-*.whl
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Start Griddb Server
+        run: docker run -t -d --network="host" --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE}
+      - name: Build Docker Image
+        run: docker build -t ${{ matrix.docker_image }} -f ${{ matrix.docker_file }} .
+      - name: Run Docker Image
+        run: docker run --network="host" --name ${{ matrix.container_name }} -it -d -v `pwd`:/python_client ${{ matrix.docker_image }}
+
+      - name: Create whl file for ${{ matrix.os }}
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
+          "cd python_client/ && . .github/workflows/script/function.sh \
+          && build_package"
+      - name: Check package information
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
+          "cd python_client/ && . .github/workflows/script/function.sh \
+          && check_package"
+      - name: Install package
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
+          "cd python_client/ && . .github/workflows/script/function.sh && install_client"
+
+      - name: Run sample
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
+          "cd python_client/ && . .github/workflows/script/function.sh \
+          && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
+
+      - name: Uninstall package
+        run: docker exec ${{ matrix.container_name }} /bin/bash -xec
+          "cd python_client/ && . .github/workflows/script/function.sh \
+          && uninstall_package ${PACKAGE_NAME} ${{ matrix.os }}"
+      - name: Upload whl file
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ matrix.package_path }}
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+
+  release_package_on_macos_10_15:
+    name: Create and release whl file for MacOS 10.15
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v1
+      - name: Prepare environment for MacOS 10.15
+        run: . .github/workflows/script/function.sh  && install_packages_macos
+
+      - name: Create whl file for MacOS 10.15
+        run: . .github/workflows/script/function.sh && build_package_macos
+      - name: Check package information
+        run: source ~/.bash_profile && . .github/workflows/script/function.sh \
+          && check_package_macos
+      - name: Install package
+        run: |
+          . .github/workflows/script/function.sh && source ~/.bash_profile
+          install_client_macos
+      - name: Start Griddb Server
+        run: |
+          eval "$(docker-machine env default)"
+          docker run -t -d --net=host --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE}
+
+      - name: Run sample
+        run: |
+          source ~/.bash_profile && . .github/workflows/script/function.sh
+          master_node_ip_address=$(ipconfig getifaddr en0)
+          master_node_port=10001
+          run_sample ${master_node_ip_address} ${master_node_port} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
+
+      - name: Uninstall package
+        run: . .github/workflows/script/function.sh && source ~/.bash_profile
+          uninstall_package ${PACKAGE_NAME}
+      - name: Upload whl file
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/griddb_python-*.whl
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+

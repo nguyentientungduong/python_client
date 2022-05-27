@@ -1,0 +1,63 @@
+FROM ubuntu:18.04
+
+ENV GRIDDB_SERVER_VERSION=4.5.2
+
+# Enviroment
+ENV DEBIAN_FRONTEND noninteractive
+
+# Install dependency
+RUN set -eux \
+    && apt-get update -y \
+    && apt-get install -y gcc-4.8 g++-4.8 wget gnupg curl libpcre3-dev make \
+    && apt-get install -y python3 python3-pip mlocate python
+
+# Create softlink gcc g++
+RUN set -eux \
+    && ln -sf /usr/bin/python2.7 /usr/bin/python2 \
+    && ln -sf /usr/bin/python3.6 /usr/bin/python3 \
+    && ln -sf /usr/bin/python3.6 /usr/bin/python
+
+# Install griddb server
+RUN set -eux \
+    # Download package griddb server
+    && wget -q https://github.com/griddb/griddb/releases/download/v${GRIDDB_SERVER_VERSION}/griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
+    # Install package griddb server
+    && dpkg -i griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
+    # Clean package
+    && rm griddb_${GRIDDB_SERVER_VERSION}_amd64.deb \
+    # Add repos for griddb c client
+    && echo 'deb http://download.opensuse.org/repositories/home:/knonomura/xUbuntu_18.04/ /' | tee /etc/apt/sources.list.d/home:knonomura.list \
+    && curl -fsSL https://download.opensuse.org/repositories/home:knonomura/xUbuntu_18.04/Release.key | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_knonomura.gpg > /dev/null \
+    && apt update -y \
+    && apt install -y griddb-c-client
+
+# Install SWIG
+RUN set -eux \
+   && wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz \
+   && tar xvfz swig-3.0.12.tar.gz \
+   && cd swig-3.0.12 \
+   && ./configure \
+   && make \
+   && make install \
+   && cd .. \
+   && rm swig-3.0.12.tar.gz
+
+RUN set -eux \
+   # Python install Numpy and Pandas
+   && python -m pip install numpy pandas \
+   # Install wheel-inspect to check whl information
+   && python -m pip install wheel-inspect \
+   # Update package for creating WHL package
+   && python -m pip install --user --upgrade setuptools wheel
+
+# Prepare softlink to install GridDB Python Client
+RUN ln -sf /usr/include/python3.6m/ /usr/include/python3.6
+
+# Correct path to numpy header file
+RUN mkdir -p /usr/lib/python3.6/site-packages/numpy/core \
+   && ln -sf /usr/local/lib/python3.6/dist-packages/numpy/core/include/ /usr/lib/python3.6/site-packages/numpy/core/include
+
+# Clean environment
+RUN set -eux \
+    && apt clean all
+
