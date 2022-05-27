@@ -80,7 +80,7 @@ install_packages_macos() {
 
     # Create virtual machine to run docker
     mkdir -p ~/.docker/machine/cache/
-    curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v18.09.1-rc1/boot2docker.iso
+    curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
     docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # Forward ports between virtual machine and MacOS machine
     ports=(10001 10010 10020 10040)
