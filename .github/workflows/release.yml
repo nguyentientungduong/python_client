@@ -22,7 +22,9 @@ jobs:
         run: docker run -t -d --network="host" --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE}
 
       - name: Install dependencies
-        run: sudo apt-get update -y && sudo apt-get install -y gcc-4.8 g++-4.8
+        run: |
+          - sudo apt-get update -y
+          - sudo apt-get install -y gcc-4.8 g++-4.8
 
       - name: Install python from pyenv
         run: |
