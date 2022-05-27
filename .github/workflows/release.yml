@@ -24,7 +24,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y gcc-4.8 g++-4.8 tree
+          sudo apt-get install -y gcc-4.8 g++-4.8 tree wget
+          wget https://github.com/griddb/c_client/releases/download/v5.0.0/griddb-c-client_5.0.0_amd64.deb
+          sudo dpkg -i griddb-c-client_5.0.0_amd64.deb
 
       - name: Install python from pyenv
         run: |
@@ -35,13 +37,10 @@ jobs:
           exec "$SHELL"
           pyenv install 3.6.9
           python3 -m pip install --user --upgrade setuptools wheel
-          python3 -m pip install wheel-inspect
+          python3 -m pip install wheel-inspect launchpadlib
 
       - name: Create whl file for manylinux
-        run: |
-          exec "$SHELL" && python3 setup.py bdist_wheel -p manylinux1_x86_64
-          ls
-          tree
+        run: exec "$SHELL" && python3 setup.py bdist_wheel -p manylinux1_x86_64
 
       - name: Check package information
         run: . .github/workflows/script/function.sh && check_package
