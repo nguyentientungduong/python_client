@@ -74,7 +74,6 @@ COMPILE_ARGS = [
 ]
 
 LIBRARIES = [
-    'rt',
     'gridstore'
 ]
 
@@ -107,7 +106,7 @@ griddb_module = Extension('_griddb_python',
 
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
-    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS :: MacOS X",
     "Programming Language :: Python :: 3.6"
 ]
 

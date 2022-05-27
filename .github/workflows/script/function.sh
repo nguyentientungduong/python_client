@@ -14,7 +14,9 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
-    source ~/.bashrc
+    which python3
+    python3 --version
+    exec "$SHELL"
     which python3
     pyenv --version
     pyenv global 3.6.9
