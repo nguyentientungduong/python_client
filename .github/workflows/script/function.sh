@@ -76,6 +76,7 @@ install_packages_macos() {
     ls -lah $(which python)
     brew install nguyentientungduong/tools/griddb-c-client
     brew install docker docker-machine virtualbox
+    docker-machine upgrade default
     brew cleanup
 
     # Create virtual machine to run docker
