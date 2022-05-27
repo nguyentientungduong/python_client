@@ -35,7 +35,8 @@ jobs:
           exec "$SHELL"
           pyenv install 3.6.9
           pyenv global 3.6.9
-          python --version
+          python3 -m pip install --user --upgrade setuptools wheel
+          python3 -m pip install wheel-inspect
 
       - name: Create whl file for manylinux
         run: . .github/workflows/script/function.sh && build_package

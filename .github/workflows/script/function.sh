@@ -14,10 +14,7 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
-    source ~/.bashrc
-    python --version
-    python3 --version
-    python setup.py bdist_wheel -p $WHLSUFFIX
+    python3 setup.py bdist_wheel -p $WHLSUFFIX
 }
 
 # Check information rpm and deb package
@@ -81,18 +78,18 @@ install_packages_macos() {
     brew install docker docker-machine virtualbox
     brew cleanup
 
-    # Create virtual machine to run docker
-    mkdir -p ~/.docker/machine/cache/
-    curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
-    docker-machine ls
-    docker-machine upgrade default
-    # Forward ports between virtual machine and MacOS machine
-    ports=(10001 10010 10020 10040)
-    for i in "${!ports[@]}"
-    do
-        VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
-    done
+    # # Create virtual machine to run docker
+    # mkdir -p ~/.docker/machine/cache/
+    # curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
+    # docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
+    # docker-machine ls
+    # docker-machine upgrade default
+    # # Forward ports between virtual machine and MacOS machine
+    # ports=(10001 10010 10020 10040)
+    # for i in "${!ports[@]}"
+    # do
+    #     VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
+    # done
 
     # Python Client for MacOS will include C Client
     brew install autoconf automake libtool
