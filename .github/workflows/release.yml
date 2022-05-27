@@ -39,8 +39,13 @@ jobs:
           python3 -m pip install --user --upgrade setuptools wheel
           python3 -m pip install wheel-inspect launchpadlib
 
+      - name : check python3
+        run : exec "$SHELL" && which python3 && ls -lah /usr/bin/python3
+
       - name: Create whl file for manylinux
-        run: exec "$SHELL" && python3 setup.py bdist_wheel -p manylinux1_x86_64
+        run: |
+          exec "$SHELL" && python3 setup.py bdist_wheel -p manylinux1_x86_64
+          ls
 
       - name: Check package information
         run: . .github/workflows/script/function.sh && check_package
@@ -74,8 +79,7 @@ jobs:
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh && build_package_macos
       - name: Check package information
-        run: source ~/.bash_profile && . .github/workflows/script/function.sh \
-          && check_package_macos
+        run: source ~/.bash_profile && . .github/workflows/script/function.sh && check_package_macos
       - name: Install package
         run: |
           . .github/workflows/script/function.sh && source ~/.bash_profile
