@@ -13,53 +13,37 @@ env:
 
 jobs:
   release_package:
-    name: Create and release ${{ matrix.file_type }} file for ${{ matrix.os }}
+    name: Create and release whl file for manylinux
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - os: Ubuntu
-            docker_file: .github/dockerfiles/Dockerfile-ubuntu18.04
-            docker_image: ubuntu
-            container_name: ubuntu_container
-            package_path: dist/griddb_python-*.whl
-
     steps:
       - uses: actions/checkout@v1
 
       - name: Start Griddb Server
         run: docker run -t -d --network="host" --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE}
-      - name: Build Docker Image
-        run: docker build -t ${{ matrix.docker_image }} -f ${{ matrix.docker_file }} .
-      - name: Run Docker Image
-        run: docker run --network="host" --name ${{ matrix.container_name }} -it -d -v `pwd`:/python_client ${{ matrix.docker_image }}
 
-      - name: Create whl file for ${{ matrix.os }}
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
-          "cd python_client/ && . .github/workflows/script/function.sh \
-          && build_package"
+      - name: Install dependencies
+        run: apt-get install -y gcc-4.8 g++-4.8
+
+      - name: Create whl file for manylinux
+        run: . .github/workflows/script/function.sh && build_package
+
       - name: Check package information
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
-          "cd python_client/ && . .github/workflows/script/function.sh \
-          && check_package"
+        run:  .github/workflows/script/function.sh && check_package
+
       - name: Install package
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
-          "cd python_client/ && . .github/workflows/script/function.sh && install_client"
+        run: . .github/workflows/script/function.sh && install_client
 
       - name: Run sample
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec \
-          "cd python_client/ && . .github/workflows/script/function.sh \
-          && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}"
+        run: . .github/workflows/script/function.sh && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
 
       - name: Uninstall package
-        run: docker exec ${{ matrix.container_name }} /bin/bash -xec
-          "cd python_client/ && . .github/workflows/script/function.sh \
-          && uninstall_package ${PACKAGE_NAME} ${{ matrix.os }}"
+        run: python3 -m pip uninstall griddb-python
+
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.package_path }}
+          file: dist/*
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
