@@ -85,7 +85,9 @@ install_packages_macos() {
     brew install nguyentientungduong/tools/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
-
+    docker-machine create --driver virtualbox default
+    eval "$(docker-machine env default)"
+    docker ps
     # # Create virtual machine to run docker
     # mkdir -p ~/.docker/machine/cache/
     # curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
