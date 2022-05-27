@@ -16,6 +16,9 @@ check_file_exist() {
 build_package() {
     source ~/.bashrc
     which python3
+    pyenv --version
+    pyenv global 3.6.9
+    which python3
     python3 setup.py bdist_wheel -p $WHLSUFFIX
 }
 
