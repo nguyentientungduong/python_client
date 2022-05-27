@@ -14,6 +14,8 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
+    source ~/.bashrc
+    which python3
     python3 setup.py bdist_wheel -p $WHLSUFFIX
 }
 
