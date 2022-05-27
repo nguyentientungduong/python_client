@@ -41,10 +41,10 @@ jobs:
           python3 -m pip install wheel-inspect launchpadlib
 
       - name : check python3
-        run : which python3 && ls -lah /usr/bin/python3
+        run : source ~/.bash_profile && which python3 && ls -lah /usr/bin/python3
 
       - name: Create whl file for manylinux
-        run: python3 setup.py bdist_wheel -p manylinux1_x86_64
+        run: source ~/.bash_profile && python3 setup.py bdist_wheel -p manylinux1_x86_64
 
       - name: Check package information
         run: . .github/workflows/script/function.sh && check_package
