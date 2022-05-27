@@ -14,6 +14,9 @@ check_file_exist() {
 
 # Create whl package
 build_package() {
+    source ~/.bashrc
+    python --version
+    python3 --version
     python setup.py bdist_wheel -p $WHLSUFFIX
 }
 
@@ -76,13 +79,14 @@ install_packages_macos() {
     ls -lah $(which python)
     brew install nguyentientungduong/tools/griddb-c-client
     brew install docker docker-machine virtualbox
-    docker-machine upgrade default
     brew cleanup
 
     # Create virtual machine to run docker
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
     docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
+    docker-machine ls
+    docker-machine upgrade default
     # Forward ports between virtual machine and MacOS machine
     ports=(10001 10010 10020 10040)
     for i in "${!ports[@]}"
