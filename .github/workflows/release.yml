@@ -41,7 +41,7 @@ jobs:
         run: . .github/workflows/script/function.sh && build_package
 
       - name: Check package information
-        run:  .github/workflows/script/function.sh && check_package
+        run: . .github/workflows/script/function.sh && check_package
 
       - name: Install package
         run: . .github/workflows/script/function.sh && install_client
