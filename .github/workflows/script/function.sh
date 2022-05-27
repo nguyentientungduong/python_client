@@ -26,10 +26,11 @@ build_package() {
 
 # Check information rpm and deb package
 check_package() {
-    local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
-    check_file_exist "$package_path"
-    wheel2json "$package_path"
+    ls dist/*
+    # local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
+    # local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
+    # check_file_exist "$package_path"
+    # wheel2json "$package_path"
 }
 
 # Install whl package
@@ -114,10 +115,11 @@ build_package_macos() {
 
 # Check information rpm and deb package
 check_package_macos() {
-    local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
-    check_file_exist "$package_path"
-    wheel2json "$package_path"
+    ls dist/*
+    # local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
+    # local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
+    # check_file_exist "$package_path"
+    # wheel2json "$package_path"
 }
 
 # Install whl package
