@@ -38,7 +38,8 @@ install_client() {
     local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
     local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
     check_file_exist "$package_path"
-    python -m pip install --upgrade --force-reinstall "$package_path"
+    source ~/.bash_profile
+    python3 -m pip install --upgrade --force-reinstall "$package_path"
 }
 
 # Run sample of Python Client
@@ -87,7 +88,7 @@ install_packages_macos() {
     brew cleanup
     sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
     brew services restart docker-machine
-    docker-machine start default
+    # docker-machine start default
     # docker-machine create --driver virtualbox default
     # docker-machine restart
     # eval "$(docker-machine env default)"
