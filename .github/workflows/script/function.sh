@@ -51,14 +51,15 @@ run_sample() {
     local cluster_name=$3
     local username=$4
     local password=$5
-
-    python sample/sample1.py $host $port $cluster_name $username $password
+    source ~/.bash_profile
+    python3 sample/sample1.py $host $port $cluster_name $username $password
 }
 
 # Uninstall GridDB package
 uninstall_package() {
     local package_name=$1
-    python -m pip uninstall -y $package_name
+    source ~/.bash_profile
+    python3 -m pip uninstall -y $package_name
 }
 
 # Prepare env for MacOS
@@ -89,9 +90,9 @@ install_packages_macos() {
     sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
     brew services restart docker-machine
     # docker-machine start default
-    # docker-machine create --driver virtualbox default
+    docker-machine create --driver virtualbox default
     # docker-machine restart
-    # eval "$(docker-machine env default)"
+    eval "$(docker-machine env default)"
     docker ps
     # # Create virtual machine to run docker
     # mkdir -p ~/.docker/machine/cache/
