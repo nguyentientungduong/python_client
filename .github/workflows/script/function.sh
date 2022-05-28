@@ -85,11 +85,10 @@ install_packages_macos() {
     brew install nguyentientungduong/tools/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
+    sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
     docker-machine create --driver virtualbox default
     docker-machine restart
-    sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
     # eval "$(docker-machine env default)"
-    docker-machine restart
     docker ps
     # # Create virtual machine to run docker
     # mkdir -p ~/.docker/machine/cache/
