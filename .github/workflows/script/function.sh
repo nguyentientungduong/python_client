@@ -87,7 +87,8 @@ install_packages_macos() {
     brew cleanup
     docker-machine create --driver virtualbox default
     docker-machine restart
-    eval "$(docker-machine env default)"
+    sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
+    # eval "$(docker-machine env default)"
     docker-machine restart
     docker ps
     # # Create virtual machine to run docker
