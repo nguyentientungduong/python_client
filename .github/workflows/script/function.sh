@@ -105,6 +105,9 @@ install_packages_macos() {
     python -m pip install wheel-inspect
 
     # Install SWIG
+    brew install autoconf
+    brew install automake
+    brew install libtool
     wget https://github.com/swig/swig/archive/refs/tags/v4.0.2.tar.gz
     tar xvfz v4.0.2.tar.gz
     cd swig-4.0.2
