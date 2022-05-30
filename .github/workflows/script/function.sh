@@ -13,7 +13,7 @@ check_file_exist() {
 }
 
 # Install gcc/g++ and C API
-install_dependencies {
+install_dependencies() {
     sudo apt-get update -y
     sudo apt-get install -y gcc-4.8 g++-4.8
     echo 'deb http://download.opensuse.org/repositories/home:/knonomura/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/home:knonomura.list
@@ -23,12 +23,12 @@ install_dependencies {
 }
 
 # Install python and dependencies of python API
-install_pyenv {
+install_pyenv() {
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
     echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init --path)"\nfi' >> ~/.bash_profile
-    source ~/.bash_profile && pyenv install ${PYTHON_VERSION} && pyenv global ${PYTHON_VERSION}
+    source ~/.bash_profile && pyenv install $PYTHON_VERSION && pyenv global $PYTHON_VERSION
     python3 -m pip install setuptools wheel
     python3 -m pip install wheel-inspect launchpadlib
     python3 -m pip install numpy pandas
