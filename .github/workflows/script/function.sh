@@ -95,45 +95,30 @@ install_packages_macos() {
     docker-machine ls
     docker ps
 
-    # Install pyenv
+    # Install pyenv and python
     brew install pyenv
     pyenv install $PYTHON_VERSION
     pyenv global $PYTHON_VERSION
-
     echo 'eval "$(pyenv init -)"' > ~/.bash_profile
     source ~/.bash_profile
     python -m pip install --user --upgrade setuptools wheel
     python -m pip install wheel-inspect
 
     # Install SWIG
-    wget https://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz
-    tar xvfz swig-3.0.12.tar.gz
-    cd swig-3.0.12
+    wget https://github.com/swig/swig/archive/refs/tags/v4.0.2.tar.gz
+    tar xvfz v4.0.2.tar.gz
+    cd swig-4.0.2
+    ./autogen.sh
     ./configure
     make
-    make install
+    sudo make install
     cd ..
-    rm swig-3.0.12.tar.gz
+    rm v4.0.2.tar.gz
     python -m pip install numpy pandas
-    ls -lah $(which python)
-    brew install nguyentientungduong/tools/griddb-c-client
-    # brew install --cask docker virtualbox
-    # brew install docker-machine
-    
-    # # brew cleanup
-    # docker-machine ls
-    # docker-machine create --driver virtualbox default
-    # docker-machine ls
-    # docker-machine restart
-    # eval "$(docker-machine env default)"
-    # docker ps
 
-    # # Create virtual machine to run docker
-    # mkdir -p ~/.docker/machine/cache/
-    # curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    # docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
-    # docker-machine ls
-    # docker-machine upgrade default
+    # Install C API
+    brew install nguyentientungduong/tools/griddb-c-client
+
     # Forward ports between virtual machine and MacOS machine
     ports=(10001 10010 10020 10040)
     for i in "${!ports[@]}"
@@ -155,7 +140,7 @@ build_package_macos() {
     python setup_macos.py bdist_wheel
 }
 
-# Check information rpm and deb package
+# Check information whl package
 check_package_macos() {
     whl_file=`get_filename_whl`
     source ~/.bash_profile
