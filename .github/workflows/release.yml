@@ -58,7 +58,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: docker-practice/actions-setup-docker@master
-        run: docker pull griddb/griddb && docker run -t -d --network="host" griddb/griddb
+      - run: |
+          set -x
+          docker pull griddb/griddb
+          docker run -t -d --network="host" griddb/griddb
       - name: Prepare environment for MacOS 10.15
         run: . .github/workflows/script/function.sh  && install_packages_macos
 

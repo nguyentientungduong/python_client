@@ -48,6 +48,7 @@ get_filename_whl() {
 # Check information whl package
 check_package() {
     whl_file=get_filename_whl
+    source ~/.bash_profile
     package_path="dist/$whl_file"
     check_file_exist "$package_path"
     wheel2json "$package_path"
