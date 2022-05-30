@@ -84,16 +84,6 @@ uninstall_package() {
 
 # Prepare env for MacOS
 install_packages_macos() {
-    # brew install --cask docker
-    # brew install docker-machine
-    # brew cleanup
-    # docker-machine ls
-    docker-machine create --driver virtualbox default
-    # docker-machine ls
-    docker-machine restart
-    eval "$(docker-machine env default)"
-    docker ps
-
     brew install pyenv
     pyenv install 3.6.9
     pyenv global 3.6.9
