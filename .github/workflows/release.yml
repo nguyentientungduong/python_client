@@ -78,7 +78,7 @@ jobs:
           source ~/.bash_profile && . .github/workflows/script/function.sh
           master_node_ip_address=$(ipconfig getifaddr en0)
           master_node_port=10001
-          run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
+          run_sample ${master_node_ip_address} ${master_node_port} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
 
       - name: Uninstall package
         run: . .github/workflows/script/function.sh && source ~/.bash_profile

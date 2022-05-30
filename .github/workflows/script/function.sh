@@ -94,6 +94,12 @@ install_packages_macos() {
     eval "$(docker-machine env default)"
     docker-machine ls
     docker ps
+    # Forward ports between virtual machine and MacOS machine
+    ports=(10001 10010 10020 10040)
+    for i in "${!ports[@]}"
+    do
+        VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
+    done
 
     # Install pyenv and python
     brew install pyenv
@@ -121,13 +127,6 @@ install_packages_macos() {
 
     # Install C API
     brew install nguyentientungduong/tools/griddb-c-client
-
-    # # Forward ports between virtual machine and MacOS machine
-    # ports=(10001 10010 10020 10040)
-    # for i in "${!ports[@]}"
-    # do
-    #     VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
-    # done
 
     # Python Client for MacOS will include C Client
     brew install autoconf automake libtool
