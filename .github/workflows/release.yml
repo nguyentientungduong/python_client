@@ -63,12 +63,14 @@ jobs:
           docker-machine ls
           mkdir -p ~/.docker/machine/cache/
           curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-          sudo docker-machine ls
-          sudo docker-machine create --driver virtualbox default
-          sudo docker-machine start default
-          sudo docker-machine ls
+          sudo chmod a+x /usr/local/bin/docker-machine
+          sudo chmod a+x /usr/local/bin/VBoxManage
+          docker-machine ls
+          docker-machine create --driver virtualbox default
+          docker-machine start default
+          docker-machine ls
           eval "$(docker-machine env default)"
-          sudo docker ps
+          docker ps
 
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh && build_package_macos
