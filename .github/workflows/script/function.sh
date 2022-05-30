@@ -94,6 +94,9 @@ install_packages_macos() {
     ls -l /dev/disk*
     sudo chown $USER /dev/disk0
     sudo chown $USER /dev/disk0s2
+    sudo chmod 777 /dev/disk0
+    sudo chmod 777 /dev/disk0s2
+    ls -l /dev/disk*
     # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
     sudo docker-machine ls
