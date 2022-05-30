@@ -57,15 +57,6 @@ jobs:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v1
-      - uses: addnab/docker-run-action@v3
-        with:
-          image: ${GRIDDB_IMAGE}
-          shell: bash
-          run: |
-            echo "first line"
-            gs_stat -u admin/admin
-            echo "second line"
-
       - name: Prepare environment for MacOS 10.15
         run: . .github/workflows/script/function.sh  && install_packages_macos
 

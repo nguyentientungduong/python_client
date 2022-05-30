@@ -85,6 +85,16 @@ uninstall_package() {
 
 # Prepare env for MacOS
 install_packages_macos() {
+    brew install --cask docker
+    brew install docker-machine
+    
+    # brew cleanup
+    docker-machine ls
+    sudo docker-machine create --driver virtualbox default
+    sudo docker-machine start default
+    eval "$(docker-machine env default)"
+    sudo docker ps
+
     brew install pyenv
     pyenv install 3.6.9
     pyenv global 3.6.9
@@ -108,6 +118,7 @@ install_packages_macos() {
     brew install nguyentientungduong/tools/griddb-c-client
     # brew install --cask docker virtualbox
     # brew install docker-machine
+    
     # # brew cleanup
     # docker-machine ls
     # docker-machine create --driver virtualbox default
