@@ -87,13 +87,14 @@ uninstall_package() {
 install_packages_macos() {
     brew install docker docker-machine
     # brew install docker-machine-parallels
-    mkdir -p ~/.docker/machine/cache/
-    curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
+    # mkdir -p ~/.docker/machine/cache/
+    # curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
+    # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
-    docker-machine ls
-    # docker-machine create --driver virtualbox default
-    docker-machine start default
+    sudo docker-machine ls
+    sudo docker-machine create --driver virtualbox default
+    sudo docker-machine start default
+    sudo docker-machine ls
     eval "$(docker-machine env default)"
     sudo docker ps
 
