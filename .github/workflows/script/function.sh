@@ -97,8 +97,8 @@ install_packages_macos() {
 
     # Install pyenv
     brew install pyenv
-    pyenv install 3.6.9
-    pyenv global 3.6.9
+    pyenv install $PYTHON_VERSION
+    pyenv global $PYTHON_VERSION
 
     echo 'eval "$(pyenv init -)"' > ~/.bash_profile
     source ~/.bash_profile
@@ -134,12 +134,12 @@ install_packages_macos() {
     # docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # docker-machine ls
     # docker-machine upgrade default
-    # # Forward ports between virtual machine and MacOS machine
-    # ports=(10001 10010 10020 10040)
-    # for i in "${!ports[@]}"
-    # do
-    #     VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
-    # done
+    # Forward ports between virtual machine and MacOS machine
+    ports=(10001 10010 10020 10040)
+    for i in "${!ports[@]}"
+    do
+        VBoxManage controlvm default natpf1 "rule$i,tcp,,${ports[$i]},,${ports[$i]}"
+    done
 
     # Python Client for MacOS will include C Client
     brew install autoconf automake libtool
@@ -157,17 +157,17 @@ build_package_macos() {
 
 # Check information rpm and deb package
 check_package_macos() {
-    ls dist/*
-    # local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    # local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
-    # check_file_exist "$package_path"
-    # wheel2json "$package_path"
+    whl_file=`get_filename_whl`
+    source ~/.bash_profile
+    package_path="dist/$whl_file"
+    check_file_exist "$package_path"
+    wheel2json "$package_path"
 }
 
 # Install whl package
 install_client_macos() {
-    local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    local package_path=dist/griddb_python-$version-cp36-cp36m-macosx_10_15_x86_64.whl
+    whl_file=`get_filename_whl`
+    package_path="dist/$whl_file"
     check_file_exist "$package_path"
     python -m pip install --upgrade --force-reinstall "$package_path"
 }
