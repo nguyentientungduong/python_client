@@ -63,10 +63,9 @@ jobs:
           docker-machine ls
           mkdir -p ~/.docker/machine/cache/
           curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-          sudo chmod a+x /usr/local/bin/docker-machine
-          sudo chmod a+x /usr/local/bin/VBoxManage
           docker-machine ls
-          docker-machine create --driver virtualbox default
+          docker-machine rm default
+          docker-machine create -d virtualbox --virtualbox-hostonly-cidr "192.168.63.1/24" default
           docker-machine start default
           docker-machine ls
           eval "$(docker-machine env default)"
