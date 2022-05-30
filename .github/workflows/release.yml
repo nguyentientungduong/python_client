@@ -57,7 +57,7 @@ jobs:
     runs-on: macos-10.15
     steps:
       - uses: actions/checkout@v1
-      - name: docker-practice/actions-setup-docker@master
+      - uses: docker-practice/actions-setup-docker@master
       - run: docker pull griddb/griddb && docker run -t -d --network="host" griddb/griddb
       - name: Prepare environment for MacOS 10.15
         run: . .github/workflows/script/function.sh  && install_packages_macos
@@ -71,7 +71,7 @@ jobs:
           . .github/workflows/script/function.sh && source ~/.bash_profile
           install_client_macos
       - name: Start Griddb Server
-        run: docker run -t -d --net=host --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE} #eval "$(docker-machine env default)"
+        run: echo "ABCD" #docker run -t -d --net=host --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE} #eval "$(docker-machine env default)"
 
       - name: Run sample
         run: |
