@@ -85,32 +85,17 @@ uninstall_package() {
 
 # Prepare env for MacOS
 install_packages_macos() {
+    # Install docker for start GridDB server
     brew install docker docker-machine
-    brew services restart docker-machine
-    docker-machine ls
-    # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    ifconfig
-    # sudo /usr/local/bin/VBoxManage hostonlyif ipconfig en0 --ip 10.79.1.161 --netmask 255.255.255.0
-    # sudo mkdir /etc/vbox
-    # sudo touch /etc/vbox/networks.conf
-    # sudo echo '* 10.0.0.0/8 192.168.0.0/16' >> /etc/vbox/networks.conf
-    # sudo echo '* 2001::/64' >> /etc/vbox/networks.conf
-    # sudo cat /etc/vbox/networks.conf
-    # ls -l /dev/disk*
-    # sudo chown $USER /dev/disk*
-    # sudo chmod 777 /dev/disk*
-    # ls -l /dev/disk*
-    # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
-    # brew cleanup
-    sudo docker-machine ls
-    sudo docker-machine create --driver virtualbox default
-    sudo docker-machine start default
-    sudo docker-machine ls
+    docker-machine rm default
+    docker-machine create -d virtualbox --virtualbox-hostonly-cidr "192.168.63.1/24" default
     eval "$(docker-machine env default)"
-    sudo docker ps
+    docker-machine ls
+    docker ps
 
+    # Install pyenv
     brew install pyenv
     pyenv install 3.6.9
     pyenv global 3.6.9
