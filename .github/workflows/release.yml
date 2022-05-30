@@ -66,9 +66,8 @@ jobs:
           docker-machine ls
           docker-machine rm default
           docker-machine create -d virtualbox --virtualbox-hostonly-cidr "192.168.63.1/24" default
-          docker-machine start default
-          docker-machine ls
           eval "$(docker-machine env default)"
+          docker-machine ls
           docker ps
 
       - name: Create whl file for MacOS 10.15
