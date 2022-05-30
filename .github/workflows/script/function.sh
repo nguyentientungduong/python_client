@@ -12,31 +12,51 @@ check_file_exist() {
     fi
 }
 
-# Create whl package
-build_package() {
-    which python3
-    python3 --version
-    exec "$SHELL"
-    which python3
-    pyenv --version
-    pyenv global 3.6.9
-    which python3
-    python3 setup.py bdist_wheel -p $WHLSUFFIX
+# Install gcc/g++ and C API
+install_dependencies {
+    sudo apt-get update -y
+    sudo apt-get install -y gcc-4.8 g++-4.8
+    echo 'deb http://download.opensuse.org/repositories/home:/knonomura/xUbuntu_18.04/ /' | sudo tee /etc/apt/sources.list.d/home:knonomura.list
+    curl -fsSL https://download.opensuse.org/repositories/home:knonomura/xUbuntu_18.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_knonomura.gpg > /dev/null
+    sudo apt-get update -y
+    sudo apt-get install -y griddb-c-client
 }
 
-# Check information rpm and deb package
+# Install python and dependencies of python API
+install_pyenv {
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+    echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init --path)"\nfi' >> ~/.bash_profile
+    source ~/.bash_profile && pyenv install ${PYTHON_VERSION} && pyenv global ${PYTHON_VERSION}
+    python3 -m pip install setuptools wheel
+    python3 -m pip install wheel-inspect launchpadlib
+    python3 -m pip install numpy pandas
+}
+
+# Create whl package
+build_package() {
+    source ~/.bash_profile && python3 setup.py bdist_wheel -p $WHLSUFFIX
+}
+
+local get_filename_whl {
+    file_path=`ls dist/*.whl`
+    filename="$(basename -- $file_path)"
+    echo $filename
+}
+
+# Check information whl package
 check_package() {
-    tree
-    # local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    # local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
-    # check_file_exist "$package_path"
-    # wheel2json "$package_path"
+    whl_file=get_filename_whl
+    package_path="dist/$whl_file"
+    check_file_exist "$package_path"
+    wheel2json "$package_path"
 }
 
 # Install whl package
 install_client() {
-    local version=$(cat setup.py | grep "version=" | cut -f 2 -d"'")
-    local package_path=dist/griddb_python-$version-cp36-cp36m-$WHLSUFFIX.whl
+    whl_file=get_filename_whl
+    package_path="dist/$whl_file"
     check_file_exist "$package_path"
     source ~/.bash_profile
     python3 -m pip install --upgrade --force-reinstall "$package_path"
@@ -87,11 +107,10 @@ install_packages_macos() {
     brew install nguyentientungduong/tools/griddb-c-client
     brew install docker docker-machine virtualbox
     brew cleanup
-    sudo "/Library/Application Support/VirtualBox/LaunchDaemons/VirtualBoxStartup.sh" restart
-    brew services restart docker-machine
-    # docker-machine start default
+    docker-machine ls
     docker-machine create --driver virtualbox default
-    # docker-machine restart
+    docker-machine ls
+    docker-machine restart
     eval "$(docker-machine env default)"
     docker ps
     # # Create virtual machine to run docker

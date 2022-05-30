@@ -10,6 +10,7 @@ env:
   GRIDDB_USERNAME: "admin"
   GRIDDB_PASSWORD: "admin"
   PACKAGE_NAME: "griddb_python"
+  PYTHON_VERSION: "3.10.4"
 
 jobs:
   release_package:
@@ -22,25 +23,13 @@ jobs:
         run: docker run -t -d --network="host" --name griddb -e GRIDDB_CLUSTER_NAME=${GRIDDB_SERVER_NAME} ${GRIDDB_IMAGE}
 
       - name: Install dependencies
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y gcc-4.8 g++-4.8 tree wget
-          wget https://github.com/griddb/c_client/releases/download/v5.0.0/griddb-c-client_5.0.0_amd64.deb
-          sudo dpkg -i griddb-c-client_5.0.0_amd64.deb
+        run: . .github/workflows/script/function.sh && install_dependencies
 
       - name: Install python from pyenv
-        run: |
-          git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-          echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-          echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-          echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n eval "$(pyenv init --path)"\nfi' >> ~/.bash_profile
-          source ~/.bash_profile && pyenv install 3.6.9 && pyenv global 3.6.9
-          python3 -m pip install setuptools wheel
-          python3 -m pip install wheel-inspect launchpadlib
-          python3 -m pip install numpy pandas
+        run: . .github/workflows/script/function.sh && install_pyenv
 
       - name: Create whl file for manylinux
-        run: source ~/.bash_profile && python3 setup.py bdist_wheel -p manylinux1_x86_64
+        run: . .github/workflows/script/function.sh && install_pyenv
 
       - name: Check package information
         run: . .github/workflows/script/function.sh && check_package
@@ -52,7 +41,7 @@ jobs:
         run: . .github/workflows/script/function.sh && run_sample ${GRIDDB_NOTIFICATION_ADDRESS} ${GRIDDB_NOTIFICATION_PORT} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
 
       - name: Uninstall package
-        run: python3 -m pip uninstall griddb-python
+        run: . .github/workflows/script/function.sh && uninstall_package ${PACKAGE_NAME}
 
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
