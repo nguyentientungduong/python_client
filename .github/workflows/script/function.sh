@@ -92,8 +92,9 @@ install_packages_macos() {
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
     sudo mkdir /etc/vbox
-    sudo echo "* 10.0.0.0/8 192.168.0.0/16" >> /etc/vbox/networks.conf
-    sudo echo "* 2001::/64" >> /etc/vbox/networks.conf
+    sudo touch /etc/vbox/networks.conf
+    sudo echo '* 10.0.0.0/8 192.168.0.0/16' >> /etc/vbox/networks.conf
+    sudo echo '* 2001::/64' >> /etc/vbox/networks.conf
     sudo cat /etc/vbox/networks.conf
     # ls -l /dev/disk*
     # sudo chown $USER /dev/disk*
