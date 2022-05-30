@@ -39,7 +39,7 @@ build_package() {
     source ~/.bash_profile && python3 setup.py bdist_wheel -p $WHLSUFFIX
 }
 
-local get_filename_whl {
+get_filename_whl() {
     file_path=`ls dist/*.whl`
     filename="$(basename -- $file_path)"
     echo $filename
