@@ -54,12 +54,13 @@ jobs:
 
   release_package_on_macos_10_15:
     name: Create and release whl file for MacOS 10.15
-    runs-on: macos-10.15
+    runs-on: [macOS-latest]
     steps:
       - uses: actions/checkout@v1
-      - uses: docker-practice/actions-setup-docker@master
       - run: |
-          set -x
+          brew install docker-machine docker
+          sudo docker --version
+          docker --version
           docker pull griddb/griddb
           docker run -t -d --network="host" griddb/griddb
       - name: Prepare environment for MacOS 10.15
