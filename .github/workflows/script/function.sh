@@ -86,7 +86,9 @@ uninstall_package() {
 # Prepare env for MacOS
 install_packages_macos() {
     brew install docker docker-machine
-    vboxmanage --version
+    brew services restart docker-machine
+    docker-machine ls
+    sudo /usr/local/opt/docker-machine/bin/docker-machine start defaul
     # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
