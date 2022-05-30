@@ -91,9 +91,9 @@ install_packages_macos() {
     # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    ls -lah /dev
-    sudo chmod 660 /dev/*
-    ls -lah /dev
+    ls -l /dev/disk*
+    sudo chown $USER /dev/disk0
+    sudo chown $USER /dev/disk0s2
     # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
     sudo docker-machine ls
