@@ -105,8 +105,9 @@ install_packages_macos() {
     python -m pip install numpy pandas
     ls -lah $(which python)
     brew install nguyentientungduong/tools/griddb-c-client
-    brew install docker docker-machine virtualbox
-    brew cleanup
+    brew install --cask docker virtualbox
+    brew install docker-machine
+    # brew cleanup
     docker-machine ls
     docker-machine create --driver virtualbox default
     docker-machine ls

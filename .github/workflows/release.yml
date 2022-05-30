@@ -29,7 +29,7 @@ jobs:
         run: . .github/workflows/script/function.sh && install_pyenv
 
       - name: Create whl file for manylinux
-        run: . .github/workflows/script/function.sh && install_pyenv
+        run: . .github/workflows/script/function.sh && build_package
 
       - name: Check package information
         run: . .github/workflows/script/function.sh && check_package
