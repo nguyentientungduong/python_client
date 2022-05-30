@@ -86,10 +86,13 @@ uninstall_package() {
 # Prepare env for MacOS
 install_packages_macos() {
     brew install docker docker-machine
+    brew uninstall virtualbox
+    cd $(brew --repo homebrew/cask)
+    git checkout 8670a72380c57c606d6582b645421e31dad2eee2
+    brew install --cask virtualbox
     # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    sudo usermod -aG vboxusers $USER
     # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
     sudo docker-machine ls
