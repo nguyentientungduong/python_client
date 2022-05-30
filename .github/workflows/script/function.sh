@@ -91,7 +91,8 @@ install_packages_macos() {
     # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    sudo /usr/local/bin/VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.99.1 --netmask 255.255.255.0
+    ifconfig
+    # sudo /usr/local/bin/VBoxManage hostonlyif ipconfig vboxnet0 --ip 192.168.99.1 --netmask 255.255.255.0
     # sudo mkdir /etc/vbox
     # sudo touch /etc/vbox/networks.conf
     # sudo echo '* 10.0.0.0/8 192.168.0.0/16' >> /etc/vbox/networks.conf
@@ -104,10 +105,10 @@ install_packages_macos() {
     # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
     sudo docker-machine ls
-    sudo docker-machine create --driver virtualbox default
-    sudo docker-machine start default
+    sudo docker-machine create --driver virtualbox default1
+    sudo docker-machine start default1
     sudo docker-machine ls
-    eval "$(docker-machine env default)"
+    eval "$(docker-machine env default1)"
     sudo docker ps
 
     brew install pyenv
