@@ -91,13 +91,14 @@ install_packages_macos() {
     # brew install docker-machine-parallels
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
-    sudo mkdir /etc/vbox
-    echo "* 10.0.0.0/8 192.168.0.0/16" >> /etc/vbox/networks.conf
-    echo "* 2001::/64" >> /etc/vbox/networks.conf
-    cat /etc/vbox/networks.conf
-    # ls -l /dev/disk*
-    # sudo chmod 777 /dev/disk*
-    # ls -l /dev/disk*
+    # sudo mkdir /etc/vbox
+    # echo "* 10.0.0.0/8 192.168.0.0/16" >> /etc/vbox/networks.conf
+    # echo "* 2001::/64" >> /etc/vbox/networks.conf
+    # cat /etc/vbox/networks.conf
+    ls -l /dev/disk*
+    sudo chown $USER /dev/disk*
+    sudo chmod 777 /dev/disk*
+    ls -l /dev/disk*
     # sudo docker-machine create --driver virtualbox --virtualbox-boot2docker-url ~/.docker/machine/cache/boot2docker.iso default
     # brew cleanup
     sudo docker-machine ls
