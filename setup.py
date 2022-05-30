@@ -66,7 +66,7 @@ DEPENDENTS = [
 INCLUDES = [
     'include',
     'src',
-    os.environ['HOME'] + '/.pyenv/versions/3.10.4/lib/python3.6/site-packages/numpy/core/include/'
+    os.environ['HOME'] + '/.pyenv/versions/3.10.4/lib/python3.10/site-packages/numpy/core/include/'
 ]
 
 COMPILE_ARGS = [
