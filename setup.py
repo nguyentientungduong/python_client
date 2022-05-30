@@ -66,7 +66,7 @@ DEPENDENTS = [
 INCLUDES = [
     'include',
     'src',
-    os.environ['HOME'] + '/.pyenv/versions/3.6.9/lib/python3.6/site-packages/numpy/core/include/'
+    os.environ['HOME'] + '/.pyenv/versions/3.10.4/lib/python3.6/site-packages/numpy/core/include/'
 ]
 
 COMPILE_ARGS = [
@@ -108,7 +108,7 @@ griddb_module = Extension('_griddb_python',
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Operating System :: POSIX :: Linux",
-    "Programming Language :: Python :: 3.6"
+    "Programming Language :: Python :: 3.10"
 ]
 
 setup(name='griddb_python',
@@ -124,4 +124,4 @@ setup(name='griddb_python',
       cmdclass={'build': CustomBuild},
       long_description_content_type = 'text/x-rst',
       classifiers=classifiers
-      )
+    )
