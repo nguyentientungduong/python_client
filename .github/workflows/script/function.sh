@@ -2,7 +2,6 @@
 
 # Declare constants
 readonly WHLSUFFIX=manylinux1_x86_64
-readonly C_CLIENT_VERSION=5.0.0
 
 # Check if the file exists with the parameter path passed
 check_file_exist() {

@@ -70,7 +70,7 @@ jobs:
       - name: Install package
         run: |
           . .github/workflows/script/function.sh
-          install_client_macos
+          install_client
 
       - name: Start Griddb Server
         run: |
