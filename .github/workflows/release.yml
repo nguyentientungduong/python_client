@@ -1,6 +1,8 @@
 name: Create package on release
 
-on: push
+on:
+  release:
+    types: [created]
 
 env:
   GRIDDB_IMAGE: griddb/griddb
