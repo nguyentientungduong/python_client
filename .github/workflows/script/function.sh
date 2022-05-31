@@ -85,6 +85,20 @@ uninstall_package() {
 
 # Prepare env for MacOS
 install_packages_macos() {
+    # Python Client for MacOS will include C Client
+    wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
+    tar xvfz v$C_CLIENT_VERSION.tar.gz
+    ls c_client-$C_CLIENT_VERSION
+    mkdir griddb-c-client
+    mv c_client-$C_CLIENT_VERSION griddb-c-client/$C_CLIENT_VERSION
+    ls griddb-c-client/$C_CLIENT_VERSION
+    # Build C API
+    cd griddb-c-client/$C_CLIENT_VERSION
+    ./bootstrap.sh
+    ./configure
+    make
+    sudo make install
+    rm v$C_CLIENT_VERSION.tar.gz
     # Install docker for start GridDB server
     brew install docker docker-machine
     mkdir -p ~/.docker/machine/cache/
@@ -132,18 +146,18 @@ install_packages_macos() {
     # brew install nguyentientungduong/tools/griddb-c-client
 
     # Python Client for MacOS will include C Client
-    wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
-    tar xvfz v$C_CLIENT_VERSION.tar.gz
-    mkdir griddb-c-client
-    mv c_client-$C_CLIENT_VERSION griddb-c-client/$C_CLIENT_VERSION
+    # wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
+    # tar xvfz v$C_CLIENT_VERSION.tar.gz
+    # mkdir griddb-c-client
+    # mv c_client-$C_CLIENT_VERSION griddb-c-client/$C_CLIENT_VERSION
 
-    # Build C API
-    cd griddb-c-client/$C_CLIENT_VERSION
-    ./bootstrap.sh
-    ./configure
-    make
-    sudo make install
-    rm v$C_CLIENT_VERSION.tar.gz
+    # # Build C API
+    # cd griddb-c-client/$C_CLIENT_VERSION
+    # ./bootstrap.sh
+    # ./configure
+    # make
+    # sudo make install
+    # rm v$C_CLIENT_VERSION.tar.gz
  }
 
 build_package_macos() {
