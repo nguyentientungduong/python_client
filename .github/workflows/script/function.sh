@@ -142,6 +142,10 @@ install_packages_macos() {
     make
     sudo make install
 
+    # Copy file binary to folder lib
+    mkdir ../../lib
+    cp /usr/local/lib/libgridstore.a ../../lib
+    cp ../../bin/libgridstore* ../../lib
  }
 
 build_package_macos() {
