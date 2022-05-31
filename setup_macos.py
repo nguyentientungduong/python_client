@@ -181,7 +181,7 @@ setup(name='griddb_python',
                 ),
                 [
                     os.path.join(
-                        "griddb-c-client", cclient_version, "3rd_party/picojson/README.mkdn"
+                        "griddb-c-client", cclient_version, "3rd_party/picojson/include/README.mkdn"
                     )
                 ],
             ),
@@ -215,7 +215,7 @@ setup(name='griddb_python',
                 ),
                 [
                     os.path.join(
-                        "griddb-c-client", cclient_version, "3rd_party/uuid/COPYING"
+                        "griddb-c-client", cclient_version, "3rd_party/uuid/uuid/COPYING"
                     )
                 ],
             ),
