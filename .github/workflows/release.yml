@@ -11,6 +11,7 @@ env:
   GRIDDB_PASSWORD: "admin"
   PACKAGE_NAME: "griddb_python"
   PYTHON_VERSION: "3.10.4"
+  C_CLIENT_VERSION: "5.0.0"
 
 jobs:
   release_package:
@@ -62,12 +63,15 @@ jobs:
 
       - name: Create whl file for MacOS 10.15
         run: . .github/workflows/script/function.sh && build_package_macos
+
       - name: Check package information
-        run: source ~/.bash_profile && . .github/workflows/script/function.sh && check_package_macos
+        run: source ~/.bash_profile && . .github/workflows/script/function.sh && check_package
+
       - name: Install package
         run: |
-          . .github/workflows/script/function.sh && source ~/.bash_profile
+          . .github/workflows/script/function.sh
           install_client_macos
+
       - name: Start Griddb Server
         run: |
           eval "$(docker-machine env default)"
@@ -81,8 +85,8 @@ jobs:
           run_sample ${master_node_ip_address} ${master_node_port} ${GRIDDB_SERVER_NAME} ${GRIDDB_USERNAME} ${GRIDDB_PASSWORD}
 
       - name: Uninstall package
-        run: . .github/workflows/script/function.sh && source ~/.bash_profile
-          uninstall_package ${PACKAGE_NAME}
+        run: . .github/workflows/script/function.sh && uninstall_package ${PACKAGE_NAME}
+
       - name: Upload whl file
         uses: svenstaro/upload-release-action@v2
         with:

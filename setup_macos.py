@@ -110,17 +110,155 @@ classifiers = [
     "Programming Language :: Python :: 3.10"
 ]
 
+cclient_version = "5.0.0"
+
 setup(name='griddb_python',
-      version='0.8.3',
+      version='0.8.5',
       author='Katsuhiko Nonomura',
       author_email='contact@griddb.org',
       description='GridDB Python Client Library built using SWIG',
       long_description=readme,
       ext_modules=[griddb_module],
       py_modules=['griddb_python'],
+	data_files=[
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client", cclient_version
+                ),
+                [
+                    os.path.join("griddb-c-client", cclient_version, "LICENSE"),
+                    os.path.join("griddb-c-client", cclient_version, "README.md"),
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/3rd_party.md"
+                    ),
+                    os.path.join(
+                        "griddb-c-client",
+                        cclient_version,
+                        "3rd_party/Apache_License-2.0.txt",
+                    ),
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/BSD_License.txt"
+                    ),
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/MIT_License.txt"
+                    ),
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/ebb",
+                ),
+                [os.path.join("griddb-c-client", cclient_version, "3rd_party/ebb/LICENSE")],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/omaha",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/omaha/COPYING"
+                    )
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/picojson",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/picojson/README.mkdn"
+                    )
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/purewell",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client",
+                        cclient_version,
+                        "3rd_party/purewell/purewell.txt",
+                    )
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/sha2",
+                ),
+                [os.path.join("griddb-c-client", cclient_version, "3rd_party/sha2/README")],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/uuid",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/uuid/COPYING"
+                    )
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "3rd_party/yield",
+                ),
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "3rd_party/yield/yield.txt"
+                    )
+                ],
+            ),
+            (
+                "lib/python3.10/site-packages",
+                [
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "lib/libgridstore.0.dylib"
+                    ),
+                    os.path.join("griddb-c-client", cclient_version, "lib/libgridstore.a"),
+                    os.path.join(
+                        "griddb-c-client", cclient_version, "lib/libgridstore.dylib"
+                    ),
+                ],
+            ),
+            (
+                os.path.join(
+                    "lib/python3.10/site-packages/griddb/griddb-c-client",
+                    cclient_version,
+                    "include",
+                ),
+                [os.path.join("griddb-c-client", cclient_version, "include/gridstore.h")],
+            ),
+            (
+                os.path.join("lib/python3.10/site-packages/griddb/Sample"),
+                ["sample/sample1.py"],
+            ),
+        ],
       url='https://github.com/griddb/python_client/',
       license='Apache Software License',
       cmdclass={'build': CustomBuild},
       long_description_content_type = 'text/x-rst',
       classifiers=classifiers
-      )
+    )

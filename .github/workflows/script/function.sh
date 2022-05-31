@@ -2,7 +2,7 @@
 
 # Declare constants
 readonly WHLSUFFIX=manylinux1_x86_64
-readonly C_CLIENT_VERSION=4.5.1
+readonly C_CLIENT_VERSION=5.0.0
 
 # Check if the file exists with the parameter path passed
 check_file_exist() {
@@ -90,6 +90,9 @@ install_packages_macos() {
     mkdir -p ~/.docker/machine/cache/
     curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
     docker-machine rm default
+
+    # On Mac OS X, VM VirtualBox will only allow IP addresses in the 192.168.56.0/21 range to be assigned to host-only adapters.
+    # That range corresponds to 192.168.56.1 - 192.168.63.255.
     docker-machine create -d virtualbox --virtualbox-hostonly-cidr "192.168.63.1/24" default
     eval "$(docker-machine env default)"
     docker-machine ls
@@ -109,6 +112,7 @@ install_packages_macos() {
     source ~/.bash_profile
     python -m pip install --user --upgrade setuptools wheel
     python -m pip install wheel-inspect
+    python -m pip install numpy pandas
 
     # Install SWIG
     brew install autoconf
@@ -123,15 +127,22 @@ install_packages_macos() {
     sudo make install
     cd ..
     rm v4.0.2.tar.gz
-    python -m pip install numpy pandas
 
     # Install C API
-    brew install nguyentientungduong/tools/griddb-c-client
+    # brew install nguyentientungduong/tools/griddb-c-client
 
     # Python Client for MacOS will include C Client
-    brew install autoconf automake libtool
     wget https://github.com/griddb/c_client/archive/v$C_CLIENT_VERSION.tar.gz
     tar xvfz v$C_CLIENT_VERSION.tar.gz
+    mkdir griddb-c-client
+    mv c_client-$C_CLIENT_VERSION griddb-c-client/$C_CLIENT_VERSION
+
+    # Build C API
+    cd griddb-c-client/$C_CLIENT_VERSION
+    ./bootstrap.sh
+    ./configure
+    make
+    sudo make install
     rm v$C_CLIENT_VERSION.tar.gz
  }
 
@@ -141,21 +152,3 @@ build_package_macos() {
     export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:./c_client-$C_CLIENT_VERSION/bin/
     python setup_macos.py bdist_wheel
 }
-
-# Check information whl package
-check_package_macos() {
-    whl_file=`get_filename_whl`
-    source ~/.bash_profile
-    package_path="dist/$whl_file"
-    check_file_exist "$package_path"
-    wheel2json "$package_path"
-}
-
-# Install whl package
-install_client_macos() {
-    whl_file=`get_filename_whl`
-    package_path="dist/$whl_file"
-    check_file_exist "$package_path"
-    python -m pip install --upgrade --force-reinstall "$package_path"
-}
-

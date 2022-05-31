@@ -112,7 +112,7 @@ classifiers = [
 ]
 
 setup(name='griddb_python',
-      version='0.8.3',
+      version='0.8.5',
       author='Katsuhiko Nonomura',
       author_email='contact@griddb.org',
       description='GridDB Python Client Library built using SWIG',
