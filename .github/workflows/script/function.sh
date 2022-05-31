@@ -142,10 +142,12 @@ install_packages_macos() {
     make
     sudo make install
 
-    # Copy file binary to folder lib
+    # Copy binary file to folder lib
     mkdir ../../lib
     cp /usr/local/lib/libgridstore.a ../../lib
     cp ../../bin/libgridstore* ../../lib
+    # Copy header file from folder include C API
+    cp -rf include ../..
  }
 
 build_package_macos() {
